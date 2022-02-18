@@ -26,11 +26,9 @@ import instance from "../shared/Request";
 
 function Main(props) {
     
-    
     return (
     <React.Fragment>
             <MainCard/>
-        
     </React.Fragment>
     );
 

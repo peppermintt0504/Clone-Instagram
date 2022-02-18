@@ -75,7 +75,7 @@ Input.defaultProps ={
     placeholder : null,
     type : "text",
 
-    Border : "1px gray solid",
+    Border : "none",
     B_radius : null,
 
     rows : "1",
