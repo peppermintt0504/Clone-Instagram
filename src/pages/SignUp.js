@@ -62,7 +62,7 @@ const theme = createTheme({
     },
 });
 
-function Login() {
+function SignUp() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -161,4 +161,4 @@ function Login() {
 }
 
 
-export default Login;
+export default SignUp;
