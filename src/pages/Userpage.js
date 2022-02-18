@@ -33,7 +33,7 @@ function Userpage() {
     return (
         <Grid is_flex align_items="center" justify_content="center">
             <Header/>
-            <Grid flex_wrap = "nowrap" margin ="70px 0 80px 0" height="100vh" width="50vw" BG_c="" is_flex flex_direction="column" align_items="center" justify_content="flex-start">
+            <Grid flex_wrap = "nowrap" margin ="70px 0 80px 0" height="100%" width="60vw" BG_c="" is_flex flex_direction="column" align_items="center" justify_content="flex-start">
                 <Grid B_bottom="1px solid #dbdbdb" min_width="530px" width="90%" height="200px" padding = "0" margin="0" is_flex>
                     <Avatar
                         alt="Remy Sharp"
@@ -57,7 +57,7 @@ function Userpage() {
                         <AppsIcon size="small"/><Text margin="25px 5px" F_size="10px">게시물</Text>
                     </Grid>
 
-                    <ImageList sx={{ width: "100%", height: "100vh" }} cols={3} rowHeight={164}>
+                    <ImageList sx={{ width: "100%", height: "100vh" }} cols={3} rowHeight={164} gap={30}>
                         {itemData.map((item) => (
                             <ImageListItem key={item.img}>
                             <img
@@ -123,6 +123,6 @@ const itemData = [
       img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
       title: 'Bike',
     },
-  ];
+];
 
 export default Userpage;
