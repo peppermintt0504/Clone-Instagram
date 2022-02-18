@@ -128,7 +128,7 @@ function SignUp() {
                     variant="contained"
                     sx={{ color : 'white' ,bgcolor : 'primary.button', mt: 3, mb: 2 }}
                     >
-                    로그인
+                    가입
                     </Button>
                 </Box>
                 </Box>
@@ -147,9 +147,9 @@ function SignUp() {
                 >
                 
                 <Grid sx={{display: 'flex', flexDirection: 'row',}} marginTop={"40px"} item>
-                    <Text width="130px" margin="0">계정이 없으신가요?</Text>
+                    <Text width="130px" margin="0">계정이 있으신가요?</Text>
                     <Link sx={{width : "60px"}} color="#109df8" href="#" variant="body2">
-                    {"가입하기"}
+                    {"로그인"}
                     </Link>
                 </Grid>
             </Box>
