@@ -17,8 +17,11 @@ const Grid = (props) => {
     const { is_flex, flex_direction, flex_wrap, justify_content, align_items } = props;
     
     //size, position category
-    const { width, height, margin, padding, position, top, bottom, z_index } = props;
-    
+    const { width, height, max_width, min_width, max_height, min_height,
+            margin, padding, 
+            position, top, bottom,
+            z_index } = props;
+        
     //event category
     const {_onClick} = props;
     
@@ -42,12 +45,9 @@ const Grid = (props) => {
         align_items,
         flex_wrap,
         
-        width,
-        height,
-        margin,
-        padding,
-        position,
-        top, bottom,
+        width, height, max_width, min_width, max_height, min_height,
+        margin, padding,
+        position,top, bottom,
         z_index,
 
     };
@@ -76,16 +76,15 @@ Grid.defaultProps ={
     BG_c : false,
     
     Border:false,
-    width : null,
-    height : null,
-    padding : false,
-    margin : false,
-    position : null,
-    top : null,
-    bottom : null,
+
+    width : null, height : null,
+    max_width : null, min_width : null, max_height : null, min_height : null,
+    padding : false, margin : false,
+    position : null, top : null, bottom : null,
     z_index :null,
 
     _onClick : null,
+    
 }
 
 const GridBox = styled.div`
@@ -103,6 +102,11 @@ const GridBox = styled.div`
     //size, position
     width : ${props => props.width};
     height : ${props => props.height};
+    max-width : ${props => props.max_width};
+    min-width : ${props => props.min_width};
+    max-height : ${props => props.max_height};
+    min-height : ${props => props.min_height};
+
     padding :${props => props.padding};
     margin : ${props => props.margin};
 
@@ -121,8 +125,7 @@ const GridBox = styled.div`
     
     //background
     background-color : ${props => props.BG_c};
-    
-    box-sizing : border-box;
+    //box-sizing : border-box;
 
 `;
 
