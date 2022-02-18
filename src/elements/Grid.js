@@ -8,7 +8,7 @@ const Grid = (props) => {
     const { B_left, B_right, Border, B_radius, B_bottom, B_top,} = props;
 
     //box category
-    const { box_shadow, } = props;
+    const { box_shadow,box_sizing } = props;
 
     //Background category
     const { BG_c, } = props;
@@ -35,7 +35,7 @@ const Grid = (props) => {
         B_radius,
         Border,
 
-        box_shadow,
+        box_shadow,box_sizing,
 
         BG_c,
 
@@ -71,7 +71,7 @@ Grid.defaultProps ={
     align_items : "center",
     justify_content : null,
 
-    box_shadow : null,
+    box_shadow : null, box_sizing: true,
     
     BG_c : false,
     
@@ -125,8 +125,8 @@ const GridBox = styled.div`
     
     //background
     background-color : ${props => props.BG_c};
-    box-sizing : border-box;
-
+    box-sizing : ${props => props.box_sizing};
+    ${props=> props.box_sizing?"box-sizing :border-box":""};
 `;
 
 export default Grid;
