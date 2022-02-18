@@ -15,18 +15,7 @@ import { red } from '@mui/material/colors';
 // import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-
-// const ExpandMore = styled((props) => {
-//   const { expand, ...other } = props;
-//   return <IconButton {...other} />;
-// })(({ theme, expand }) => ({
-//   transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-//   marginLeft: 'auto',
-//   transition: theme.transitions.create('transform', {
-//     duration: theme.transitions.duration.shortest,
-//   }),
-// }));
+import { BsChat } from "react-icons/bs";
 
 export default function mainCard(props) {
 
@@ -52,9 +41,12 @@ export default function mainCard(props) {
         image="https://blog.kakaocdn.net/dn/0mySg/btqCUccOGVk/nQ68nZiNKoIEGNJkooELF1/img.jpg"
         alt="사용자가 올린 이미지"
       />
+
       <IconButton aria-label="add to favorites">
         <FavoriteBorderIcon/>
-        <ChatBubbleOutlineIcon/>
+      </IconButton>
+      <IconButton aria-label="chat">
+        <BsChat/>
       </IconButton>
       
       <CardContent>
