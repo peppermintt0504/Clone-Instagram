@@ -10,6 +10,7 @@ import './App.css';
 import Main from "../pages/Main";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
+import Userpage from "../pages/Userpage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<Main />}/>
         <Route path="/login" element={<Login />}/>
         <Route path="/signup" element={<SignUp />}/>
+        <Route path="/userpage/:userId" element={<Userpage />}/>
       </Routes>
     </React.Fragment>
   );

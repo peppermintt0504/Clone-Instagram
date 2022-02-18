@@ -67,10 +67,18 @@ function SignUp() {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         // eslint-disable-next-line no-console
-        console.log({
-            email: data.get('email'),
+        const signupData = {
+            loginId: data.get('loginID'),
             password: data.get('password'),
-        });
+            passwordCheck: data.get('password'),
+        };
+        console.log(signupData);
+
+        instance.post('/user/signUp',signupData).then((res) =>{
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        })
 
         
     };
@@ -104,10 +112,10 @@ function SignUp() {
                     size="small"
                     //required
                     fullWidth
-                    id="email"
+                    id="loginID"
                     label="사용자 이름"
-                    name="email"
-                    autoComplete="email"
+                    name="loginID"
+                    autoComplete="loginID"
                     autoFocus
                     />
                     <TextField
@@ -149,7 +157,7 @@ function SignUp() {
                 
                 <Grid sx={{display: 'flex', flexDirection: 'row',}} marginTop={"40px"} item>
                     <Text width="130px" margin="0">계정이 있으신가요?</Text>
-                    <Link sx={{width : "60px"}} color="#109df8" href="#" variant="body2">
+                    <Link sx={{width : "60px"}} color="#109df8" href="/login" variant="body2">
                     {"로그인"}
                     </Link>
                 </Grid>

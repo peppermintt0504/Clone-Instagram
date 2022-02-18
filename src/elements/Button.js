@@ -8,10 +8,10 @@ const Button = (props) => {
     const { Border, B_radius,   } = props;
     
     //Background category
-    const { BG_color,box_shadow,   } = props;
+    const { BG_color, box_shadow,   } = props;
     
     //font category
-    const { font_color, font_size  } = props;
+    const { font_color, font_size, font_weight  } = props;
     
     //size, position category
     const { width, height, margin, position, top, right, bottom,  } = props;
@@ -37,8 +37,7 @@ const Button = (props) => {
         BG_color,
         box_shadow,
 
-        font_color,
-        font_size,
+        font_color, font_size, font_weight,
 
         position,
         top, 
@@ -87,6 +86,7 @@ const Btn = styled.button`
     box-shadow :        ${props => props.box_shadow};
     
     font-size :         ${props => props.font_size};
+    font-weight :       ${props => props.font_weight};
     color :             ${props => props.font_color};
     
     height :            ${props => props.height};
