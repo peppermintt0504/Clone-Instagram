@@ -54,7 +54,7 @@ Image.defaultProps = {
     size: "200",
     width : null,
     height : null,
-    margin : "5px",
+    margin : "",
 };
 
 const ImageDefault = styled.div`

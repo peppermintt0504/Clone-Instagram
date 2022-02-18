@@ -16,7 +16,7 @@ import { Button, Grid, Input, Image, Text } from "../elements"
 
 
 // impot Component
-
+import Header from "../components/Header";
 //import Actions
 
 
@@ -28,7 +28,8 @@ function Main(props) {
     
     return (
     <React.Fragment>
-            <MainCard/>
+        <Header/>
+        <MainCard/>
     </React.Fragment>
     );
 

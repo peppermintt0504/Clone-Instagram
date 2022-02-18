@@ -4,24 +4,20 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-// import CardActions from '@mui/material/CardActions';
-// import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
-// import FavoriteIcon from '@mui/icons-material/Favorite';
-// import ShareIcon from '@mui/icons-material/Share';
-// import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { BsChat } from "react-icons/bs";
 import { Text, Grid } from '../elements';
-import style from "styled-components";
+// import style from "styled-components";
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import '../shared/App.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Button, Input } from '@mui/material';
+import { Button, Input, Typography, Box, Modal } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import Detail from '../components/Detail';
 import { useNavigate } from "react-router-dom";
 /*
 const theme = createTheme({
@@ -34,10 +30,25 @@ const theme = createTheme({
 */
 
 export default function MainCard(props) {
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   return (
     // <ThemeProvider>
-      <Card sx={{ maxWidth: 700,}} onClick={()=>{navigate("/test")}}>
+    <div className='mainbox'>
+      <Card sx={{ maxWidth: 700,}} onClick={handleOpen}>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Detail/>
+      </Modal>
+
         <CardHeader 
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -81,6 +92,6 @@ export default function MainCard(props) {
           </button>
         </Grid>
       </Card>
-    // </ThemeProvider>
+      </div>
   );
 }

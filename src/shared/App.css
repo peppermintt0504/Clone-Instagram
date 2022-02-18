@@ -40,3 +40,8 @@
 .cardbox.Mui-Card {
   margin: 0px;
 }
+
+.mainbox {
+  width: 100%;
+  margin: auto;
+}
