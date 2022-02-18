@@ -29,9 +29,7 @@ function Main(props) {
     
     return (
     <React.Fragment>
-        <Grid width="100%" margin="auto">
             <MainCard/>
-        </Grid>
         
     </React.Fragment>
     );
