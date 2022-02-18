@@ -2,9 +2,9 @@
 
 
 export const RESP = {
-    DIARY: {
-        ok : true,
-        list: [
+    POST: {
+        result: true, 
+        data: [
         {
             diary_uid : "NKLJSDFGLER",
             emotion : "soso",
