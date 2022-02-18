@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
+// import { styled } from '@mui/material/styles';
+import styled from 'styled-components';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -10,13 +11,19 @@ import { red } from '@mui/material/colors';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { BsChat } from "react-icons/bs";
-import { Text, Grid } from '../elements';
 // import style from "styled-components";
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import '../shared/App.css';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Button, Input, Typography, Box, Modal } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+
+import Cardheader from '../components/Cardheader';
+
+
+
+import '../shared/App.css';
+import { Text, Grid } from '../elements';
 import Detail from '../components/Detail';
 import { useNavigate } from "react-router-dom";
 /*
@@ -39,7 +46,8 @@ export default function MainCard(props) {
   return (
     // <ThemeProvider>
     <div className='mainbox'>
-      <Card sx={{ maxWidth: 700,}} onClick={handleOpen}>
+      <Card sx={{ maxWidth: 600, margin: "auto",}} onClick={handleOpen}>
+        {/* 모듈부분 */}
       <Modal
         open={open}
         onClose={handleClose}
@@ -48,21 +56,9 @@ export default function MainCard(props) {
       >
         <Detail/>
       </Modal>
+      {/* 모듈 끝 */}
 
-        <CardHeader 
-          avatar={
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              R
-            </Avatar>
-          }
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
-          title="yejin"
-          // subheader="September 14, 2016"
-        />
+      <Cardheader/>
         <CardMedia
           component="img"
           height="600"
@@ -70,23 +66,24 @@ export default function MainCard(props) {
           alt="사용자가 올린 이미지"
         />
 
-        <IconButton aria-label="add to favorites">
+        <IconButton sx={{ pl: 2, pb: 2}} aria-label="add to favorites">
           <FavoriteBorderIcon/>
         </IconButton>
-        <IconButton aria-label="chat">
-          <BsChat/>
+        <IconButton sx={{pb: 2}} aria-label="chat">
+          <BsChat size="22" border ="3px"/>
         </IconButton>
-        <Text margin="5px">좋아요0개</Text>
+        <Text padding_left = "16px" F_weight="bold">좋아요0개</Text>
         
         <CardContent>
-          <Typography variant="body2" color="text.secondary">
-            <span>yejin</span> css개힘든데?
-        </Typography>
+            <Typography variant="body2" color="black" align="justify">
+            <strong>yejin</strong> css개힘든데?
+            </Typography>
         </CardContent>
-        <Grid is_flex>
+
+        <Grid is_flex margin_left="16px">
             <SentimentSatisfiedAltIcon className="SmileButton" fontSize="medium" />
             <input className="CommentInputBox" placeholder="댓글 달기..."></input>
-            {/* <Input className="CommentInputBox" placeholder="댓글 달기..." border="none"></Input> */}
+            <Input className="CommentInputBox" placeholder="댓글 달기..." Border></Input>
             <button type="submit" className="CommentAddButton">
             게시
           </button>
@@ -95,3 +92,4 @@ export default function MainCard(props) {
       </div>
   );
 }
+

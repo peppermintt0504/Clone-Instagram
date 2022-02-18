@@ -54,7 +54,7 @@ Image.defaultProps = {
     size: "200",
     width : null,
     height : null,
-    margin : "",
+    margin : "0px",
 };
 
 const ImageDefault = styled.div`
@@ -89,7 +89,7 @@ const ImageCircle = styled.div`
     
     background-image: url("${(props) => props.src}");
     background-size: cover;
-    margin: 4px;
+    margin: ${(props) => props.margin}
 `;
 const ImagePost = styled.div`
     width: ${(props) => props.width};

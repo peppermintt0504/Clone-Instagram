@@ -21,7 +21,7 @@ const style = {
   padding : 0,
 };
 
-export default function BasicModal() {
+export default function Detail() {
 
   return (
     <div>
@@ -33,7 +33,6 @@ export default function BasicModal() {
             width = "880px"
             padding = "0px"
             />
-
 
         <div>
           <Typography id="modal-modal-title" variant="h6" component="h2">

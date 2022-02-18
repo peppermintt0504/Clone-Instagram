@@ -18,7 +18,7 @@ const Grid = (props) => {
     
     //size, position category
     const { width, height, max_width, min_width, max_height, min_height,
-            margin, padding, 
+            margin,  margin_left, padding, 
             position, top, bottom,
             z_index } = props;
         
@@ -46,7 +46,7 @@ const Grid = (props) => {
         flex_wrap,
         
         width, height, max_width, min_width, max_height, min_height,
-        margin, padding,
+        margin, margin_left, padding,
         position,top, bottom,
         z_index,
 
@@ -79,7 +79,7 @@ Grid.defaultProps ={
 
     width : null, height : null,
     max_width : null, min_width : null, max_height : null, min_height : null,
-    padding : false, margin : false,
+    padding : false, margin : false, margin_left : null,
     position : null, top : null, bottom : null,
     z_index :null,
 
@@ -109,6 +109,7 @@ const GridBox = styled.div`
 
     padding :${props => props.padding};
     margin : ${props => props.margin};
+    margin-left : ${props => props.margin_left};
 
     position : ${props => props.position};
     top : ${props => props.top};
