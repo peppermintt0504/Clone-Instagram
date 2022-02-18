@@ -29,7 +29,7 @@ import { Text,  } from "../elements"
 
 
 // impot Component
-
+import Header from "../components/Header";
 
 //import Actions
 
@@ -77,6 +77,7 @@ function SignUp() {
     
     return (
     <ThemeProvider theme={theme}>
+        <Header/>
         <Container sx={{
             bgcolor : "primary.main",
             minWidth : '100vw',
