@@ -67,7 +67,7 @@ Grid.defaultProps ={
 
     is_flex :false,
     flex_direction : "row",
-    flex_wrap : 'wrap',
+    flex_wrap : 'nowrap',
     align_items : "center",
     justify_content : null,
 
@@ -125,7 +125,7 @@ const GridBox = styled.div`
     
     //background
     background-color : ${props => props.BG_c};
-    //box-sizing : border-box;
+    box-sizing : border-box;
 
 `;
 

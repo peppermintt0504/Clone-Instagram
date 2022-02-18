@@ -67,12 +67,18 @@ function Login() {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         // eslint-disable-next-line no-console
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
 
-        
+        const signupData = {
+            loginId: data.get('loginID'),
+            password: data.get('password'),
+        };
+        console.log(signupData);
+
+        instance.post('/user/login',signupData).then((res) =>{
+            console.log(res);
+        }).catch((err) => {
+            console.log(err);
+        })
     };
     
     return (
@@ -103,10 +109,10 @@ function Login() {
                     size="small"
                     //required
                     fullWidth
-                    id="email"
+                    id="loginID"
                     label="사용자 이름"
-                    name="email"
-                    autoComplete="email"
+                    name="loginID"
+                    autoComplete="loginID"
                     autoFocus
                     />
                     <TextField
@@ -148,7 +154,7 @@ function Login() {
                 
                 <Grid sx={{display: 'flex', flexDirection: 'row',}} marginTop={"40px"} item>
                     <Text width="130px" margin="0">계정이 없으신가요?</Text>
-                    <Link sx={{width : "60px"}} color="#109df8" href="#" variant="body2">
+                    <Link sx={{width : "60px"}} color="#109df8" href="/signup" variant="body2">
                     {"가입하기"}
                     </Link>
                 </Grid>
