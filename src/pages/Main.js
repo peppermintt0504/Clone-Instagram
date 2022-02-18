@@ -3,6 +3,7 @@ import React from "react"
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
+import mainCard from "../elements/mainCard";
 
 //import Actions
 
@@ -25,10 +26,7 @@ import instance from "../shared/Request";
 function Main() {
     
     return (
-        <Grid>
-            <h1>하이?</h1>
-        </Grid>
-
+        <mainCard/>
     );
 }
 
