@@ -46,11 +46,11 @@ function Userpage() {
         data : formData,
         headers : {
           "Content-Type": "multipart/form-data",
-          authorization: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJxd2Vxd2UiLCJhdXRoIjoiUk9MRV9VU0VSIiwiZXhwIjoxNjQ1MjUyMDQwfQ.vEfEUDtHyVBJFLgV39JWFbV9uBOhiwIO2vPmlfePllvV5UccVU6ZyGT7Kq9Fn8cuV44bh-ZzXJSQe-S4TH-XMA",
+          authorization: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJxd2Vxd2UiLCJhdXRoIjoiUk9MRV9VU0VSIiwiZXhwIjoxNjQ1Mjg5MTYyfQ.yxYjLnesCQulOOlTGMS7_CK1o61Eysuc6Pa6ydghI8o3smHJwpIAjcseM7LwZBiMpDg6nBtaUmxDWaRGTfr9kw",
         }
       })
     
-}
+  }
     return (
         <Grid is_flex align_items="center" justify_content="center">
             <Header/>

@@ -10,7 +10,9 @@ import Cardheader from './Cardheader';
 import LikeChat from './LikeChat';
 import ChatBox from './ChatBox';
 import { Grid } from '@mui/material';
-import {Text } from "../elements" 
+
+import { Input,Text } from "../elements" 
+
 
 const style = {
   position: 'absolute',
@@ -45,7 +47,6 @@ export default function Detail() {
               <span>ㅁㄴㅇㄹ</span>
           </Cardheader>
           <hr></hr>
-
 
           <Grid is_flex flex_wrap="nowrap" margin_left="16px" width="100%">
             <Grid width="32px">

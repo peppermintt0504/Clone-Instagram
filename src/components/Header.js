@@ -28,7 +28,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 
 // impot Component
-
+import Write from "./Wirte";
 
 //import Actions
 
@@ -75,13 +75,7 @@ const Header = (props) => {
                 <Grid position='fixed' top="0" right="0">
                 <CloseIcon sx={{ color: 'white', fontSize: 40 }} onClick={handleClose}/>
                 </Grid>
-                <Grid>
-                    <Grid is_flex min_width="348px" max_width="min(calc(100vw - 372px),855px)" width="751px"  height="42px" BG_c="white">
-                        <Grid/><Grid/><Grid/>
-                    </Grid>
-                    <Grid min_width="348px" min_height="348px" max_width="min(calc(100vw - 372px),855px)" max_height="min(calc(100vw - 372px),855px)" width="751px" height="calc(100vmin - 219px)" BG_c="white">
-                    </Grid>
-                </Grid>
+                <Write/>
                 
             </Grid>
             </Modal>
