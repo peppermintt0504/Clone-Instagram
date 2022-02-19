@@ -41,11 +41,11 @@ function Cardheader(props) {
             margin = "0"
             />
           }
-          action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
-          }
+        //   action={
+        //     <IconButton aria-label="settings">
+        //       <MoreVertIcon />
+        //     </IconButton>
+        //   }
           title="yejin"
         //   subheader="September 14, 2016"
         />

@@ -45,3 +45,12 @@
   width: 100%;
   margin: auto;
 }
+
+.CommentInputBox {
+  border: none;
+  width:470px;
+}
+
+.CommentInputBox:focus {
+  outline: none;
+}
