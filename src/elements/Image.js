@@ -11,8 +11,11 @@ const Image = (props) => {
     //event category
     const { _onClick, } = props;
     
+    //box category
     const { box_shadow } = props;
 
+    //flex category
+    const { flex } = props;
 
     const styles = {
         src,
@@ -21,6 +24,7 @@ const Image = (props) => {
         height,
         margin,
         box_shadow,
+        flex,
         
     }
     if(shape === "imageBG"){
@@ -39,9 +43,7 @@ const Image = (props) => {
         )
     }
     return (
-        <AspectOutter>
-            <AspectInner onClick={_onClick} {...styles}></AspectInner>
-        </AspectOutter>
+        <ImageDefault onClick={_onClick} {...styles}></ImageDefault>
     )
 
 
@@ -54,14 +56,22 @@ Image.defaultProps = {
     size: "200",
     width : null,
     height : null,
-    margin : "0px",
+// <<<<<<< HEAD
+//     margin : "0px",
+// =======
+    margin : "5px",
+    flex : null,
 };
 
 const ImageDefault = styled.div`
     width : ${(props)=> props.width};
     height : ${(props)=> props.height};
+    margin : ${props => props.margin};
     background-image: url("${(props) => props.src}");
     background-size: cover;
+    background-position: center;
+
+    flex :  ${props => props.flex};
     // border-top-left-radius ;
 `;
 
@@ -69,7 +79,7 @@ const AspectOutter = styled.div`
     width : ${(props)=> props.width};
     height : ${(props)=> props.height};
     margin : ${props => props.margin};
-    min-width: 400px;
+    //min-width: 400px;
 `;
 
 const AspectInner = styled.div`
