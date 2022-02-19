@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.cardbox.Mui-Card {
+  margin: 0px;
+}
+
+.mainbox {
+  width: 100%;
+  margin: auto;
+}
+
+.CommentInputBox {
+  border: none;
+  width:100%;
+}
+
+.CommentInputBox:focus {
+  outline: none;
+}

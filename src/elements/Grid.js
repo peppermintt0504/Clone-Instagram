@@ -18,8 +18,8 @@ const Grid = (props) => {
     
     //size, position category
     const { width, height, max_width, min_width, max_height, min_height,
-            margin, padding, gap, row_gap, column_gap,
-            position, top, bottom,
+            margin, margin_left, padding, gap, row_gap, column_gap,
+            position, top, bottom,right,
             z_index } = props;
         
     //event category
@@ -46,8 +46,9 @@ const Grid = (props) => {
         flex_wrap,
         
         width, height, max_width, min_width, max_height, min_height,
-        margin, padding, gap, row_gap, column_gap,
-        position,top, bottom,
+
+        margin, margin_left, padding, gap, row_gap, column_gap,
+        position,top, bottom, right,
         z_index,
 
     };
@@ -79,10 +80,11 @@ Grid.defaultProps ={
 
     width : null, height : null,
     max_width : null, min_width : null, max_height : null, min_height : null,
-    padding : false, margin : false, gap: false, row_gap: false, column_gap: false,
-    position : null, top : null, bottom : null,
-    z_index :null,
 
+    padding : false, margin : false, margin_left : null, gap: false, row_gap: false, column_gap: false,
+    position : null, top : null, bottom : null, right : null,
+
+    z_index :null,
     _onClick : null,
     
 }
@@ -109,6 +111,7 @@ const GridBox = styled.div`
 
     padding :${props => props.padding};
     margin : ${props => props.margin};
+    margin-left : ${props => props.margin_left};
     gap : ${props => props.gap};
     row-gap :${props => props.row_gap};
     column-gap : ${props => props.column_gap};
@@ -116,6 +119,7 @@ const GridBox = styled.div`
     position : ${props => props.position};
     top : ${props => props.top};
     bottom : ${props => props.bottom};
+    right : ${props => props.right};
     z-index : ${props => props.z_index};
 
     //border

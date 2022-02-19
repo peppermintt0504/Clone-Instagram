@@ -3,6 +3,8 @@ import React from "react"
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
+import MainCard from "../components/MainCard";
+
 
 //import Actions
 
@@ -14,7 +16,7 @@ import { Button, Grid, Input, Image, Text } from "../elements"
 
 
 // impot Component
-
+import Header from "../components/Header";
 //import Actions
 
 
@@ -22,14 +24,15 @@ import { Button, Grid, Input, Image, Text } from "../elements"
 import instance from "../shared/Request";
 
 
-function Main() {
+function Main(props) {
     
     return (
-        <Grid>
-            <h1>하이?</h1>
-        </Grid>
-
+    <React.Fragment>
+        <Header/>
+        <MainCard/>
+    </React.Fragment>
     );
+
 }
 
 

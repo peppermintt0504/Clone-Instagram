@@ -67,9 +67,11 @@ Image.defaultProps = {
     size: "200",
     width : null,
     height : null,
+// <<<<<<< HEAD
+//     margin : "0px",
+// =======
     margin : "5px",
     flex : null,
-    
 };
 
 
@@ -117,11 +119,11 @@ const ImageCircle = styled.div`
     --size: ${(props) => props.size}px;
     width: var(--size);
     height: var(--size);
-    border-radius: var(--size);
+    border-radius: 50%;
     
     background-image: url("${(props) => props.src}");
     background-size: cover;
-    margin: 4px;
+    margin: ${(props) => props.margin}
 `;
 const ImagePost = styled.div`
     width: ${(props) => props.width};
