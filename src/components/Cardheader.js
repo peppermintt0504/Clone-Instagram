@@ -33,34 +33,34 @@ import { BsFolder } from "react-icons/bs";
 function Cardheader(props) {
     
     return (
-        //  <CardHeader
-        //   avatar={
-        //     <Image
-        //     shape="circle"
-        //     src ="https://3.bp.blogspot.com/-x4gLW4b7sB4/XHE3SYQbIpI/AAAAAAAA4nM/SFGGsj7HgyELAWCFQfanqqQwwBJfg30YACLcBGAs/s1600/01.jpg"
-        //     size = "30"
-        //     margin = "0"
-        //     />
-        //   }
-
-        // titleTypographyProps={{
-        //   fontWeight: 600,
-        // }}
-        //   title="yejin" 
-
-        // />
-        <>
-        <Grid is_flex margin_left="16px" >
-        <Image
+         <CardHeader sx={{ width:40 }}
+          avatar={
+            <Image
             shape="circle"
             src ="https://3.bp.blogspot.com/-x4gLW4b7sB4/XHE3SYQbIpI/AAAAAAAA4nM/SFGGsj7HgyELAWCFQfanqqQwwBJfg30YACLcBGAs/s1600/01.jpg"
             size = "30"
             margin = "0"
-        />
+            />
+          }
 
-        <Text padding_left="16px">yejin</Text>
-        </Grid>
-        </>
+        titleTypographyProps={{
+          fontWeight: 600,
+        }}
+          title="yejin" 
+
+        />
+        // <>
+        // <Grid is_flex margin_left="16px" >
+        // <Image
+        //     shape="circle"
+        //     src ="https://3.bp.blogspot.com/-x4gLW4b7sB4/XHE3SYQbIpI/AAAAAAAA4nM/SFGGsj7HgyELAWCFQfanqqQwwBJfg30YACLcBGAs/s1600/01.jpg"
+        //     size = "30"
+        //     margin = "0"
+        // />
+
+        // <Text padding_left="16px">yejin</Text>
+        // </Grid>
+        // </>
 
     );
 

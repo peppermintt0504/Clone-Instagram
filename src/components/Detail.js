@@ -10,6 +10,7 @@ import Cardheader from './Cardheader';
 import LikeChat from './LikeChat';
 import ChatBox from './ChatBox';
 import { Grid } from '@mui/material';
+import {Text } from "../elements" 
 
 const style = {
   position: 'absolute',
@@ -45,18 +46,32 @@ export default function Detail() {
           </Cardheader>
           <hr></hr>
 
-          <Grid is_flex>
-          <Cardheader/>
-            <Typography variant="body2" color="black" align="justify">
-              css...🔥🔥🔥🔥 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자
-            </Typography>
+
+          <Grid is_flex flex_wrap="nowrap" margin_left="16px" width="100%">
+            <Grid width="32px">
+              <Image
+              shape="circle"
+              src ="https://3.bp.blogspot.com/-x4gLW4b7sB4/XHE3SYQbIpI/AAAAAAAA4nM/SFGGsj7HgyELAWCFQfanqqQwwBJfg30YACLcBGAs/s1600/01.jpg"
+              size = "30"
+              />
+            </Grid>
+
+            <Grid width="">
+              <Typography variant="body2" color="black" align="justify">
+                <strong>yejin</strong> css...🔥🔥🔥🔥 안녕
+                말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 
+              </Typography>
+            </Grid>
+
           </Grid>
 
-          <LikeChat modal={false}/>
-          <ChatBox/>
-          {/* <Typography id="modal-modal-description" sx={{ mt: -1 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography> */}
+          <Grid position="absolute" bottom="0px" width="400px">
+            <hr></hr>
+            <LikeChat modal={false}/>
+            <hr></hr>
+            <ChatBox/>
+          </Grid>
+
         </Grid>
         </Box>
     </div>
