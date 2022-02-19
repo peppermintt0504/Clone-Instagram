@@ -33,7 +33,7 @@ function Userpage() {
     return (
         <Grid is_flex align_items="center" justify_content="center">
             <Header/>
-            <Grid flex_wrap = "nowrap" margin ="70px 0 80px 0" height="100%" width="60vw" BG_c="" is_flex flex_direction="column" align_items="center" justify_content="flex-start">
+            <Grid flex_wrap = "nowrap" margin ="70px 0 80px 0" height="100%" max_width="975px" width="70vw" BG_c="" is_flex flex_direction="column" align_items="center" justify_content="flex-start">
                 <Grid B_bottom="1px solid #dbdbdb" min_width="530px" width="90%" height="200px" padding = "0" margin="0" is_flex>
                     <Avatar
                         alt="Remy Sharp"
@@ -56,19 +56,15 @@ function Userpage() {
                     <Grid B_top="1px solid black" box_sizing="false" is_flex BG_c="">
                         <AppsIcon size="small"/><Text margin="25px 5px" F_size="10px">게시물</Text>
                     </Grid>
+                    <Grid is_flex flex_wrap="wrap" width="100%" flex_direction="row">
+                      {}
+                    {itemData.map((item,index) => {
+                        return (
+                            <Image flex="1 0 30%" max_width="290px" max_height="290px" height="290px" src={item.img}/>
+                        )
+                      })}
 
-                    <ImageList sx={{ width: "100%", height: "100vh" }} cols={3} rowHeight={164} gap={30}>
-                        {itemData.map((item) => (
-                            <ImageListItem key={item.img}>
-                            <img
-                                src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
-                                srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-                                alt={item.title}
-                                loading="lazy"
-                            />
-                            </ImageListItem>
-                        ))}
-                        </ImageList>
+                    </Grid>
             </Grid>
         </Grid>
 
@@ -99,30 +95,7 @@ const itemData = [
       img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
       title: 'Honey',
     },
-    {
-      img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-      title: 'Basketball',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-      title: 'Fern',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1597645587822-e99fa5d45d25',
-      title: 'Mushrooms',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1567306301408-9b74779a11af',
-      title: 'Tomato basil',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1471357674240-e1a485acb3e1',
-      title: 'Sea star',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1589118949245-7d38baf380d6',
-      title: 'Bike',
-    },
+
 ];
 
 export default Userpage;
