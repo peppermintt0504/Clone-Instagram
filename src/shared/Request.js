@@ -6,10 +6,8 @@ const instance = axios.create({
 	baseURL: "http://3.39.0.192", // 현진님
 
         headers : {
-                "content-type" : "application/json;charset-UTF-8",
-                
+                //"content-type" : "application/json;charset-UTF-8",
                 // "content-type" : "multipart/form-data",
-
                 // "Content-Type": "application/x-www-form-urlencoded",
                 accept : "application/json,",
         }

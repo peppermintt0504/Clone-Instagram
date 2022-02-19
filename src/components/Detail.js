@@ -11,6 +11,9 @@ import LikeChat from './LikeChat';
 import ChatBox from './ChatBox';
 import { Grid } from '@mui/material';
 
+import { Input,Text } from "../elements" 
+
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -46,9 +49,10 @@ export default function Detail() {
           <hr></hr>
 
           <Grid is_flex>
-          <Cardheader/>
+          
             <Typography variant="body2" color="black" align="justify">
-              css...🔥🔥🔥🔥 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자
+              <Cardheader/>
+              <Text width="80px" padding_left="16px">yejin</Text>css...🔥🔥🔥🔥 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자
             </Typography>
           </Grid>
 

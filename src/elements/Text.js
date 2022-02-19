@@ -9,7 +9,7 @@ const Text = (props) => {
 
     const { margin, padding, padding_left, width, } = props
 
-    const { is_flex, flex_direction,flex_wrap, align_items, justify_content,  } = props
+    const { is_flex, flex_direction,flex_wrap, align_items, justify_content, vertical_align } = props
 
     const { Border, B_radius, B_bottom } = props;
 
@@ -27,6 +27,7 @@ const Text = (props) => {
         flex_wrap ,
         align_items,
         justify_content,
+        vertical_align,
 
 
         Border, 
@@ -61,6 +62,7 @@ Text.defaultProps ={
     flex_wrap : 'wrap',
     align_items : "center",
     justify_content : null,
+    vertical_align:false,
 
     cursor : null,
 
@@ -71,7 +73,7 @@ Text.defaultProps ={
     margin : null,
     padding_left : null,
     padding : null,
-    width: '100%',
+    width: 'auto',
     
     _onClick : null,
 };
@@ -90,6 +92,8 @@ const P = styled.div`
     justify-content:${props => props.justify_content};
     flex-direction :  ${props => props.flex_direction};
     flex-wrap :  ${props => props.flex_wrap};
+    vertical-align : ${props => props.vertical_align};
+
 
     border :  ${props => props.Border};
     border-radius :  ${props => props.B_radius};

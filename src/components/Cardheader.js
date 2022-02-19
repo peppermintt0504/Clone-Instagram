@@ -50,7 +50,7 @@ function Cardheader(props) {
 
         // />
         <>
-        <Grid is_flex margin_left="16px" >
+        <Grid width="150px" is_flex margin_left="16px" >
         <Image
             shape="circle"
             src ="https://3.bp.blogspot.com/-x4gLW4b7sB4/XHE3SYQbIpI/AAAAAAAA4nM/SFGGsj7HgyELAWCFQfanqqQwwBJfg30YACLcBGAs/s1600/01.jpg"
@@ -58,7 +58,7 @@ function Cardheader(props) {
             margin = "0"
         />
 
-        <Text padding_left="16px">yejin</Text>
+        <Text width="auto" padding_left="16px">yejin</Text>
         </Grid>
         </>
 
