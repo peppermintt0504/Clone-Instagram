@@ -83,6 +83,8 @@ const Write = (props) => {
         //         authorization: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJxd2Vxd2UiLCJhdXRoIjoiUk9MRV9VU0VSIiwiZXhwIjoxNjQ1Mjg5MTYyfQ.yxYjLnesCQulOOlTGMS7_CK1o61Eysuc6Pa6ydghI8o3smHJwpIAjcseM7LwZBiMpDg6nBtaUmxDWaRGTfr9kw",
         //     }
         //     }).then(res => console.log(res))
+
+        
         // instance({
         //     method : "post",
         //     url : "/user/profile",
@@ -123,7 +125,7 @@ const Write = (props) => {
                     BG_c="white">
                         <Image width="100px" height="80px" src="/addPost.jpg"/>
                         <Text>버튼을 눌러 사진을 추가하세요</Text>
-                        <Button _onClick={()=>{fileInput.current.click()}} width="120px" height="30px" >컴퓨터에서 선택</Button>
+                        <Button _onClick={()=>{fileInput.current.click()}} font_weight="600" font_color="white" B_radius="5px" Border="0px solid #0095f6" BG_color="#0095f6" width="120px" height="30px" >컴퓨터에서 선택</Button>
                         <input ref={fileInput} onChange={selectFile} type="file" style={{display:'none'}}/>
                     </Grid>
                 </Grid>
