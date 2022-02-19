@@ -8,10 +8,12 @@ import { useNavigate } from "react-router-dom";
 
 
 //import elements
-import { Button, Grid, Input, Image, Text } from "../elements" 
+import {  Grid, Input, Image, Text } from "../elements" 
 
 //import Mui
 import Avatar from '@mui/material/Avatar';
+import { Modal } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
 
 //import Icon
 import HomeIcon from '@mui/icons-material/Home';
@@ -22,6 +24,8 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 // impot Component
 
@@ -37,6 +41,10 @@ const Header = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     
     React.useEffect(async() => {
 
@@ -49,15 +57,34 @@ const Header = (props) => {
             <Grid padding="0 20px" width ="70%" max_width='960px' height='57px' BG_c="" margin='0 auto' is_flex justify_content='space-between' >
                 <img width={"120px"} alt="instagram letter Logo" src="/Logo/Logo5.png"/>
                 <Grid is_flex flex_direction="row">
-                    <HomeOutlinedIcon sx={{ margin :"10px"}}/>
-                    <SendOutlinedIcon sx={{ margin :"10px"}}/>
-                    <AddBoxOutlinedIcon sx={{ margin :"10px"}}/>
-                    <FavoriteBorderOutlinedIcon sx={{ margin :"10px"}}/>
+                <IconButton aria-label="delete"><HomeOutlinedIcon sx={{ margin :"10px"}}/></IconButton>
+                <IconButton aria-label="delete"><SendOutlinedIcon sx={{ margin :"10px"}}/></IconButton>    
+                <IconButton onClick={handleOpen} aria-label="delete"><AddBoxOutlinedIcon  sx={{ margin :"10px"}}/></IconButton>    
+                <IconButton aria-label="delete"><FavoriteBorderOutlinedIcon sx={{ margin :"10px"}}/></IconButton>    
                 </Grid>
             </Grid>
             </Grid>
             <Grid margin = "57px"/>
-
+            <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            >
+            <Grid width="100vw" height="100vh" is_flex justify_content="center" align_items="center" position="relative" >
+                <Grid position='fixed' top="0" right="0">
+                <CloseIcon sx={{ color: 'white', fontSize: 40 }} onClick={handleClose}/>
+                </Grid>
+                <Grid>
+                    <Grid is_flex min_width="348px" max_width="min(calc(100vw - 372px),855px)" width="751px"  height="42px" BG_c="white">
+                        <Grid/><Grid/><Grid/>
+                    </Grid>
+                    <Grid min_width="348px" min_height="348px" max_width="min(calc(100vw - 372px),855px)" max_height="min(calc(100vw - 372px),855px)" width="751px" height="calc(100vmin - 219px)" BG_c="white">
+                    </Grid>
+                </Grid>
+                
+            </Grid>
+            </Modal>
         </React.Fragment>
     );
 

@@ -59,7 +59,7 @@ export default function MainCard(props) {
           alt="사용자가 올린 이미지"
         />
 
-        <LikeChat/>
+        <LikeChat modal={true}/>
         
         <CardContent>
             <Typography variant="body2" color="black" align="justify">

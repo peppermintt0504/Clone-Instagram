@@ -33,11 +33,12 @@ import instance from "../shared/Request";
 
 
 export default function LikeChat(props) {
-
+    console.log(props);
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
+    const handleOpen = () => {
+      return props.modal? setOpen(true):setOpen(false)
+    }
     const handleClose = () => setOpen(false);
-    
     return (
         <>
         <IconButton sx={{ pl: 2, pb: 2}} aria-label="add to favorites">

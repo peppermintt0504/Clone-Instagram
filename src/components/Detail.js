@@ -50,7 +50,7 @@ export default function Detail() {
           <Typography variant="body2" color="black" align="justify">css...🔥🔥🔥🔥</Typography>
           </Grid>
 
-          <LikeChat/>
+          <LikeChat modal={false}/>
           <ChatBox/>
           {/* <Typography id="modal-modal-description" sx={{ mt: -1 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
