@@ -47,7 +47,9 @@ export default function Detail() {
 
           <Grid is_flex>
           <Cardheader/>
-          <Typography variant="body2" color="black" align="justify">css...🔥🔥🔥🔥</Typography>
+            <Typography variant="body2" color="black" align="justify">
+              css...🔥🔥🔥🔥 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자
+            </Typography>
           </Grid>
 
           <LikeChat modal={false}/>

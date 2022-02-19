@@ -63,7 +63,8 @@ export default function MainCard(props) {
         
         <CardContent>
             <Typography variant="body2" color="black" align="justify">
-            <strong>yejin</strong> css...🔥🔥🔥🔥
+            <strong>yejin</strong> css...🔥🔥🔥🔥 안녕
+            말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 
             </Typography>
             <Typography variant="body2" color="text.secondary" align="justify">1일전</Typography>
         </CardContent>
