@@ -23,7 +23,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 //import elements
-import { Text,  } from "../elements" 
+import { Text,  } from "../elements";
+import { setCookie } from "../shared/Cookie";
 
 //import Icon
 
@@ -63,6 +64,8 @@ const theme = createTheme({
 });
 
 function Login() {
+    const navigate = useNavigate();
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -75,9 +78,11 @@ function Login() {
         console.log(signupData);
 
         instance.post('/user/login',signupData).then((res) =>{
-            console.log(res);
+            setCookie("is_login",res.headers.authorization);
+            navigate("/");
         }).catch((err) => {
             console.log(err);
+            window.alert("로그인에 실패하였습니다.")
         })
     };
     

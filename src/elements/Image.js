@@ -39,11 +39,22 @@ const Image = (props) => {
     }
     if(shape === "circle"){
         return (
-            <ImageCircle onClick={_onClick} {...styles}></ImageCircle>
+            <div>
+
+            
+            <ImageCircle onClick={_onClick} {...styles}/>
+            </div>
         )
     }
     return (
-        <ImageDefault onClick={_onClick} {...styles}></ImageDefault>
+        <div>
+        <ImageDefault onClick={_onClick} {...styles}>
+        <Hover>
+        </Hover>
+
+        </ImageDefault>
+
+        </div>
     )
 
 
@@ -58,8 +69,10 @@ Image.defaultProps = {
     height : null,
     margin : "5px",
     flex : null,
-
+    
 };
+
+
 
 const ImageDefault = styled.div`
     width : ${(props)=> props.width};
@@ -68,9 +81,20 @@ const ImageDefault = styled.div`
     background-image: url("${(props) => props.src}");
     background-size: cover;
     background-position: center;
+    z-index: 1;
 
     flex :  ${props => props.flex};
-    // border-top-left-radius ;
+`;
+
+const Hover = styled.div`
+    width : 100%;
+    height :100%;
+    z-index : 9;
+
+    &:hover {
+        
+        background-color : rgba(0,0,0,0.3);
+    }
 `;
 
 const AspectOutter = styled.div`

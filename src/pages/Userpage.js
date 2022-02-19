@@ -31,19 +31,13 @@ function Userpage() {
 
 
   const selectFile =(e) =>{
-    const reader = new FileReader();
     const formData = new FormData();
 
-    const file = fileInput.current.files[0];
 
+    const file = fileInput.current.files[0];
+    console.log(fileInput.current.files);
 
     formData.append("userProfile",file);
-
-
-    reader.readAsDataURL(file);
-
-    reader.onload = () =>{
-    }
 
 
       instance({
@@ -84,12 +78,35 @@ function Userpage() {
                     <Grid B_top="1px solid black" box_sizing="false" is_flex BG_c="">
                         <AppsIcon size="small"/><Text margin="25px 5px" F_size="10px">게시물</Text>
                     </Grid>
-                    <Grid is_flex flex_wrap="wrap" width="100%" flex_direction="row">
-                      {}
+                    <Grid is_flex width="100%" max_width="950px" flex_direction="column" align_items="center" gap="30px">
                     {itemData.map((item,index) => {
-                        return (
-                            <Image key={index} flex="1 0 30%" max_width="290px" max_height="290px" height="290px" src={item.img}/>
+                      const post_line = parseInt(itemData.length / 3);
+                      if(index % 3===0 && itemData.length - index -1 >= 2){
+                        return(
+                          <Grid key={index} width="94%" is_flex gap="30px">
+                            <Image key={index} max_width="290px" max_height="290px" width="15vw" height="15vw" src={itemData[index].img}/>
+                            <Image key={index+1} max_width="290px" max_height="290px" width="15vw" height="15vw" src={itemData[index+1].img}/>
+                            <Image key={index+2} max_width="290px" max_height="290px" width="15vw" height="15vw" src={itemData[index+2].img}/>
+                            </Grid>
                         )
+                      }
+                      if(post_line*3 ===index){
+                        if(itemData.length - index -1 === 0 ){
+                          return(
+                            <Grid key={index}  width="94%" is_flex flex gap="30px">
+                            <Image key={index} max_width="290px" max_height="290px" width="18vw" height="18vw" src={itemData[index].img}/></Grid>
+                          )
+                        }
+                        if(itemData.length - index -1 === 1 ){
+                          return(
+                            <Grid key={index}  width="94%" is_flex flex gap="30px">
+                            <Image key={index} max_width="290px" max_height="290px" width="15vw" height="15vw" src={itemData[index].img}/>
+                            <Image key={index+1} max_width="290px" max_height="290px" width="15vw" height="15vw" src={itemData[index+1].img}/>
+                            </Grid>
+                          )
+                        }
+                      }
+
                       })}
 
                     </Grid>
@@ -99,6 +116,10 @@ function Userpage() {
     );
 }
 const itemData = [
+    {
+      img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+      title: 'Breakfast',
+    },
     {
       img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
       title: 'Breakfast',
@@ -122,6 +143,34 @@ const itemData = [
     {
       img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
       title: 'Honey',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
+      title: 'Breakfast',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
+      title: 'Burger',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+      title: 'Camera',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
+      title: 'Coffee',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
+      title: 'Hats',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
+      title: 'Honey',
+    },
+    {
+      img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
+      title: 'Camera',
     },
 
 ];

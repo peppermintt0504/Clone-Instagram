@@ -63,19 +63,20 @@ const theme = createTheme({
 });
 
 function SignUp() {
+    const navigate = useNavigate();
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        // eslint-disable-next-line no-console
+
         const signupData = {
             loginId: data.get('loginID'),
             password: data.get('password'),
             passwordCheck: data.get('password'),
         };
-        console.log(signupData);
 
         instance.post('/user/signUp',signupData).then((res) =>{
-            console.log(res);
+            window.alert("회원가입에 성공하셨습니다.");
+            navigate("/login");
         }).catch((err) => {
             console.log(err);
         })
