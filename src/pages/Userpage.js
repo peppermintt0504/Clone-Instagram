@@ -15,8 +15,6 @@ import AppsIcon from '@mui/icons-material/Apps';
 
 //import MUI
 import Avatar from '@mui/material/Avatar';
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
 
 // impot Component
 import Header from "../components/Header";
@@ -29,7 +27,36 @@ import instance from "../shared/Request";
 
 
 function Userpage() {
+  const fileInput = React.useRef();
+
+
+  const selectFile =(e) =>{
+    const reader = new FileReader();
+    const formData = new FormData();
+
+    const file = fileInput.current.files[0];
+
+
+    formData.append("userProfile",file);
+
+
+    reader.readAsDataURL(file);
+
+    reader.onload = () =>{
+    }
+
+
+      instance({
+        method : "post",
+        url : "/user/profile",
+        data : formData,
+        headers : {
+          "Content-Type": "multipart/form-data",
+          authorization: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJxd2Vxd2UiLCJhdXRoIjoiUk9MRV9VU0VSIiwiZXhwIjoxNjQ1MjUyMDQwfQ.vEfEUDtHyVBJFLgV39JWFbV9uBOhiwIO2vPmlfePllvV5UccVU6ZyGT7Kq9Fn8cuV44bh-ZzXJSQe-S4TH-XMA",
+        }
+      })
     
+}
     return (
         <Grid is_flex align_items="center" justify_content="center">
             <Header/>
@@ -44,7 +71,8 @@ function Userpage() {
                     <Grid is_flex flex_direction = "column" width = "50%" >
                         <Grid is_flex flex_direction = "row">
                             <Text F_size="25px" width = "200px">userId</Text>  
-                            <Button Border="1px solid #dbdbdb" B_radius="4px" width = "120px" height="30px" font_size="14px" font_weight="600" text = "프로필 사진 변경" />
+                            <Button _onClick={()=>{fileInput.current.click()}} Border="1px solid #dbdbdb" B_radius="4px" width = "120px" height="30px" font_size="14px" font_weight="600" text = "프로필 사진 변경" />
+                            <input ref={fileInput} onChange={selectFile} type="file" style={{display:'none'}}/>
                         </Grid>
                         <Grid min_width="300px" width="100%" is_flex flex_direction = "row">
                             <Text width="250px" margin = "10px">게시물 22</Text>
@@ -60,7 +88,7 @@ function Userpage() {
                       {}
                     {itemData.map((item,index) => {
                         return (
-                            <Image flex="1 0 30%" max_width="290px" max_height="290px" height="290px" src={item.img}/>
+                            <Image key={index} flex="1 0 30%" max_width="290px" max_height="290px" height="290px" src={item.img}/>
                         )
                       })}
 
