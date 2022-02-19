@@ -5,6 +5,11 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import CardMedia from '@mui/material/CardMedia';
 import { Image } from '../elements';
+import CloseIcon from '@mui/icons-material/Close';
+import Cardheader from './Cardheader';
+import LikeChat from './LikeChat';
+import ChatBox from './ChatBox';
+import { Grid } from '@mui/material';
 
 const style = {
   position: 'absolute',
@@ -30,18 +35,27 @@ export default function Detail() {
         <Image
             shape="imagePost"
             src ="https://3.bp.blogspot.com/-x4gLW4b7sB4/XHE3SYQbIpI/AAAAAAAA4nM/SFGGsj7HgyELAWCFQfanqqQwwBJfg30YACLcBGAs/s1600/01.jpg"
-            width = "880px"
+            width = "800px"
             padding = "0px"
             />
 
-        <div>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: -1 }}>
+        <Grid width="400px">
+          <Cardheader>
+              <span>ㅁㄴㅇㄹ</span>
+          </Cardheader>
+          <hr></hr>
+
+          <Grid is_flex>
+          <Cardheader/>
+          <Typography variant="body2" color="black" align="justify">css...🔥🔥🔥🔥</Typography>
+          </Grid>
+
+          <LikeChat/>
+          <ChatBox/>
+          {/* <Typography id="modal-modal-description" sx={{ mt: -1 }}>
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </div>
+          </Typography> */}
+        </Grid>
         </Box>
     </div>
   );

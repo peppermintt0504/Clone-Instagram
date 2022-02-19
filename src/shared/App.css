@@ -48,7 +48,7 @@
 
 .CommentInputBox {
   border: none;
-  width:470px;
+  width:100%;
 }
 
 .CommentInputBox:focus {

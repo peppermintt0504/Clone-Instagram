@@ -17,44 +17,37 @@ import CloseIcon from '@mui/icons-material/Close';
 
 import Cardheader from '../components/Cardheader';
 import Detail from '../components/Detail';
-import LickChat from './LikeChat';
+import LikeChat from './LikeChat';
 import ChatBox from './ChatBox';
 
+import instance from "../shared/Request";
 
 import '../shared/App.css';
 import { Text, Grid } from '../elements';
 
 import { useNavigate } from "react-router-dom";
-/*
-const theme = createTheme({
-  palette: {
-      primary: {
-          margin : '0px',
-      },
-  },
-});
-*/
+
 
 export default function MainCard(props) {
   // let navigate = useNavigate();
 
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  // const [open, setOpen] = React.useState(false);
+  // const handleOpen = () => setOpen(true);
+  // const handleClose = () => setOpen(false);
 
   return (
     // <ThemeProvider>
     <div className='mainbox'>
-      <Card sx={{ maxWidth: 600, margin: "auto",}} onClick={handleOpen}>
+      <Card sx={{ maxWidth: 600, margin: "auto",}}>
         {/* 모듈부분 */}
-      <Modal
+      {/* <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Detail/>
-      </Modal>
+      </Modal> */}
       {/* 모듈 끝 */}
 
       <Cardheader/>
@@ -66,7 +59,7 @@ export default function MainCard(props) {
           alt="사용자가 올린 이미지"
         />
 
-        <LickChat/>
+        <LikeChat/>
         
         <CardContent>
             <Typography variant="body2" color="black" align="justify">
@@ -83,6 +76,4 @@ export default function MainCard(props) {
       </div>
   );
 }
-
-
 
