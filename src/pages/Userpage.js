@@ -63,7 +63,7 @@ function Userpage() {
                     />
 
                     <Grid is_flex flex_direction = "column" width = "50%" >
-                        <Grid is_flex flex_direction = "row">
+                        <Grid width="100%" is_flex flex_direction = "row">
                             <Text F_size="25px" width = "200px">userId</Text>  
                             <Button _onClick={()=>{fileInput.current.click()}} Border="1px solid #dbdbdb" B_radius="4px" width = "120px" height="30px" font_size="14px" font_weight="600" text = "프로필 사진 변경" />
                             <input ref={fileInput} onChange={selectFile} type="file" style={{display:'none'}}/>
