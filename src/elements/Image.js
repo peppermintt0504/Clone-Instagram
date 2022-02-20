@@ -38,12 +38,8 @@ const Image = (props) => {
         )
     }
     if(shape === "circle"){
-        return (
-            <div>
-
-            
+        return (            
             <ImageCircle onClick={_onClick} {...styles}/>
-            </div>
         )
     }
     return (
