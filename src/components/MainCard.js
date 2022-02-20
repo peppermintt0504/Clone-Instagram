@@ -19,6 +19,7 @@ import Cardheader from '../components/Cardheader';
 import Detail from '../components/Detail';
 import LikeChat from './LikeChat';
 import ChatBox from './ChatBox';
+import Img from './Img';
 
 import instance from "../shared/Request";
 
@@ -39,25 +40,10 @@ export default function MainCard(props) {
     // <ThemeProvider>
     <div className='mainbox'>
       <Card sx={{ maxWidth: 600, margin: "auto",}}>
-        {/* 모듈부분 */}
-      {/* <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Detail/>
-      </Modal> */}
-      {/* 모듈 끝 */}
 
-      <Cardheader/>
-      
-        <CardMedia
-          component="img"
-          height="600"
-          image="https://blog.kakaocdn.net/dn/0mySg/btqCUccOGVk/nQ68nZiNKoIEGNJkooELF1/img.jpg"
-          alt="사용자가 올린 이미지"
-        />
+        <Cardheader/>
+
+        <Img setHeight={"600px"}/>
 
         <LikeChat modal={true}/>
         

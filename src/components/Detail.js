@@ -10,8 +10,10 @@ import Cardheader from './Cardheader';
 import LikeChat from './LikeChat';
 import ChatBox from './ChatBox';
 import { Grid } from '@mui/material';
+import Img from './Img';
 
 import { Input,Text } from "../elements" 
+import { height } from '@mui/system';
 
 
 const style = {
@@ -29,19 +31,16 @@ const style = {
   padding : 0,
 };
 
-export default function Detail() {
+export default function Detail(props) {
 
   return (
     <div>
         <Box sx={style}>
 
-        <Image
-            shape="imagePost"
-            src ="https://3.bp.blogspot.com/-x4gLW4b7sB4/XHE3SYQbIpI/AAAAAAAA4nM/SFGGsj7HgyELAWCFQfanqqQwwBJfg30YACLcBGAs/s1600/01.jpg"
-            width = "800px"
-            padding = "0px"
-            />
-
+          <div style={{ width: "800px", height: "740px"}}>
+            <Img setHeight={"740px"}/>
+          </div>
+        
         <Grid width="400px">
           <Cardheader>
               <span>ㅁㄴㅇㄹ</span>
@@ -78,3 +77,4 @@ export default function Detail() {
     </div>
   );
 }
+
