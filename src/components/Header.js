@@ -27,11 +27,13 @@ import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 
 
+
 // impot Component
 import Write from "./Wirte";
 
 //import Actions
-
+import { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 //import axios
 import instance from "../shared/Request";
@@ -41,13 +43,22 @@ const Header = (props) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const _user = useSelector(state=>state.user);
+    const _post = useSelector(state=>state.post);
+    // console.log(1 in _user.user.follow)
+
+    console.log(_user);
+    // console.log(_post);
+
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     
     React.useEffect(async() => {
-
+        dispatch(userActions.loginCheck());
+        dispatch(userActions.getUsers());
+        dispatch(postActions.getPost());
     },[]);
     
     return(
@@ -57,10 +68,11 @@ const Header = (props) => {
             <Grid padding="0 20px" width ="70%" max_width='960px' height='57px' BG_c="" margin='0 auto' is_flex justify_content='space-between' >
                 <img width={"120px"} alt="instagram letter Logo" src="/Logo/Logo5.png"/>
                 <Grid is_flex flex_direction="row">
-                <IconButton aria-label="delete"><HomeOutlinedIcon sx={{ margin :"10px"}}/></IconButton>
-                <IconButton aria-label="delete"><SendOutlinedIcon sx={{ margin :"10px"}}/></IconButton>    
-                <IconButton onClick={handleOpen} aria-label="delete"><AddBoxOutlinedIcon  sx={{ margin :"10px"}}/></IconButton>    
-                <IconButton aria-label="delete"><FavoriteBorderOutlinedIcon sx={{ margin :"10px"}}/></IconButton>    
+                <IconButton onClick={()=>{console.log(" ")}} ><HomeOutlinedIcon sx={{ margin :"10px"}}/></IconButton>
+                <IconButton onClick={()=>{console.log(" ")}} ><SendOutlinedIcon sx={{ margin :"10px"}}/></IconButton>    
+                <IconButton onClick={handleOpen}><AddBoxOutlinedIcon  sx={{ margin :"10px"}}/></IconButton>    
+                <IconButton onClick={()=>{console.log(" ")}} ><FavoriteBorderOutlinedIcon sx={{ margin :"10px"}}/></IconButton>    
+                {_user.is_login?<IconButton onClick={()=>{navigate(`/userpage/${_user.user.userKey}`)}} ><Avatar sx={{ margin :"10px"}} alt="Remy Sharp" src={_user.user.userProfileUrl} /></IconButton> :""}
                 </Grid>
             </Grid>
             </Grid>

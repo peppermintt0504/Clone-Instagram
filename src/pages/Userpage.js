@@ -1,8 +1,8 @@
 //import Library
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 //import Actions
 
@@ -12,6 +12,8 @@ import { Button, Grid, Input, Image, Text } from "../elements"
 
 //import Icon
 import AppsIcon from '@mui/icons-material/Apps';
+import AddTaskIcon from '@mui/icons-material/AddTask';
+import TaskAltIcon from '@mui/icons-material/TaskAlt';
 
 //import MUI
 import Avatar from '@mui/material/Avatar';
@@ -20,37 +22,52 @@ import Avatar from '@mui/material/Avatar';
 import Header from "../components/Header";
 
 //import Actions
-
+import { actionCreators as userActions } from "../redux/modules/user";
 
 //import axios
 import instance from "../shared/Request";
+import { getCookie } from "../shared/Cookie";
 
 
 function Userpage() {
-  const fileInput = React.useRef();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const _user = useSelector(state=>state.user);
+  const _post = useSelector(state=>state.post);
+
+  
+  const _userKey = parseInt(useParams().userKey);
+
+  
+  const pageUser = _user.user_list.reduce((x,v,i)=>  v.userKey===_userKey?v:x,"");
+  const pagePost = _post.list.filter((v,i)=>v.userKey===_userKey?true:false);
+  
+  const fileInput = React.useRef();
 
   const selectFile =(e) =>{
     const formData = new FormData();
-
-
     const file = fileInput.current.files[0];
-    console.log(fileInput.current.files);
 
     formData.append("userProfile",file);
 
-
+      const token =getCookie("is_login");
       instance({
-        method : "post",
+        method : "put",
         url : "/user/profile",
         data : formData,
         headers : {
           "Content-Type": "multipart/form-data",
-          authorization: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJxd2Vxd2UiLCJhdXRoIjoiUk9MRV9VU0VSIiwiZXhwIjoxNjQ1Mjg5MTYyfQ.yxYjLnesCQulOOlTGMS7_CK1o61Eysuc6Pa6ydghI8o3smHJwpIAjcseM7LwZBiMpDg6nBtaUmxDWaRGTfr9kw",
+          authorization: token,
         }
-      })
+      }).then(res=>window.location.reload());
     
   }
+
+  const followUser = () =>{
+    dispatch(userActions.followUser(_userKey));
+  }
+
     return (
         <Grid is_flex align_items="center" justify_content="center">
             <Header/>
@@ -58,20 +75,28 @@ function Userpage() {
                 <Grid B_bottom="1px solid #dbdbdb" min_width="530px" width="90%" height="200px" padding = "0" margin="0" is_flex>
                     <Avatar
                         alt="Remy Sharp"
-                        src='/profile/default.jpg'
+                        src={pageUser?pageUser.userProfileUrl:""}
                         sx={{ marginRight: "50px", width: 150, height: 150 }}
                     />
 
                     <Grid is_flex flex_direction = "column" width = "50%" >
                         <Grid width="100%" is_flex flex_direction = "row">
-                            <Text F_size="25px" width = "200px">userId</Text>  
+                            <Text F_size="25px" width = "200px">{pageUser?pageUser.loginId:""}</Text>
+                            {_user.user.userKey === _userKey?
+                            <div>
                             <Button _onClick={()=>{fileInput.current.click()}} Border="1px solid #dbdbdb" B_radius="4px" width = "120px" height="30px" font_size="14px" font_weight="600" text = "프로필 사진 변경" />
-                            <input ref={fileInput} onChange={selectFile} type="file" style={{display:'none'}}/>
+                            <input ref={fileInput} onChange={selectFile} type="file" style={{display:'none'}}/></div>
+                          :<Button _onClick={()=>{}} Border="1px solid #dbdbdb" B_radius="4px" width = "120px" height="30px" font_size="14px" font_weight="600" text = "메시지 보내기" />}
+                            {_user.user.userKey === _userKey?"":
+                            _user.user.follow.reduce((x,v,i)=> v===_userKey?true:x,false)?
+                              <Button _onClick={followUser} Border="1px solid #dbdbdb" margin="10px 20px" B_radius="4px" width = "50px" height="30px" font_size="14px" font_weight="600"><TaskAltIcon/></Button>
+                              :<Button _onClick={followUser} Border="1px solid #dbdbdb" margin="10px 20px" B_radius="4px" width = "50px" height="30px" font_size="14px" font_weight="600"><AddTaskIcon/></Button>}
+                            
                         </Grid>
                         <Grid min_width="300px" width="100%" is_flex flex_direction = "row">
-                            <Text width="250px" margin = "10px">게시물 22</Text>
-                            <Text width="250px" margin = "10px">팔로우 400</Text>
-                            <Text width="250px" margin = "10px">팔로워 300</Text>
+                            <Text width="250px" margin = "10px">게시물 {pagePost?pagePost.length:""}</Text>
+                            <Text width="250px" margin = "10px">팔로우 {pageUser?pageUser.follow.length:""}</Text>
+                            <Text width="250px" margin = "10px">팔로워 {pageUser?pageUser.follower.length:""}</Text>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -79,35 +104,35 @@ function Userpage() {
                         <AppsIcon size="small"/><Text margin="25px 5px" F_size="10px">게시물</Text>
                     </Grid>
                     <Grid is_flex width="100%" max_width="950px" flex_direction="column" align_items="center" gap="30px">
-                    {itemData.map((item,index) => {
-                      const post_line = parseInt(itemData.length / 3);
-                      if(index % 3===0 && itemData.length - index -1 >= 2){
+                    {pagePost?pagePost.map((item,index) => {
+                      const post_line = parseInt(pagePost.length / 3);
+                      if(index % 3===0 && pagePost.length - index -1 >= 2){
                         return(
-                          <Grid key={index} width="94%" is_flex gap="30px">
-                            <Image key={index} max_width="290px" max_height="290px" width="15vw" height="15vw" src={itemData[index].img}/>
-                            <Image key={index+1} max_width="290px" max_height="290px" width="15vw" height="15vw" src={itemData[index+1].img}/>
-                            <Image key={index+2} max_width="290px" max_height="290px" width="15vw" height="15vw" src={itemData[index+2].img}/>
+                          <Grid key={index} width="calc(min(15vw,290px)*3 + 90px)" is_flex gap="30px">
+                            <Image key={index} max_width="290px" max_height="290px" width="15vw" height="15vw" src={pagePost[index].postImg[0]}/>
+                            <Image key={index+1} max_width="290px" max_height="290px" width="15vw" height="15vw" src={pagePost[index+1].postImg[0]}/>
+                            <Image key={index+2} max_width="290px" max_height="290px" width="15vw" height="15vw" src={pagePost[index+2].postImg[0]}/>
                             </Grid>
                         )
                       }
                       if(post_line*3 ===index){
-                        if(itemData.length - index -1 === 0 ){
+                        if(pagePost.length - index -1 === 0 ){
                           return(
-                            <Grid key={index}  width="94%" is_flex flex gap="30px">
-                            <Image key={index} max_width="290px" max_height="290px" width="18vw" height="18vw" src={itemData[index].img}/></Grid>
+                            <Grid key={index}  width="calc(min(15vw,290px)*3 + 90px)" is_flex flex gap="30px">
+                            <Image key={index} width="calc(min(15vw,290px))" height="calc(min(15vw,290px))" src={pagePost[index].postImg[0]}/></Grid>
                           )
                         }
-                        if(itemData.length - index -1 === 1 ){
+                        if(pagePost.length - index -1 === 1 ){
                           return(
-                            <Grid key={index}  width="94%" is_flex flex gap="30px">
-                            <Image key={index} max_width="290px" max_height="290px" width="15vw" height="15vw" src={itemData[index].img}/>
-                            <Image key={index+1} max_width="290px" max_height="290px" width="15vw" height="15vw" src={itemData[index+1].img}/>
+                            <Grid key={index}  width="calc(min(15vw,290px)*3 + 90px)" is_flex flex gap="30px">
+                            <Image key={index} width="calc(min(15vw,290px))" height="calc(min(15vw,290px))" src={pagePost[index].postImg[0]}/>
+                            <Image key={index+1} width="calc(min(15vw,290px))" height="calc(min(15vw,290px))" src={pagePost[index+1].postImg[0]}/>
                             </Grid>
                           )
                         }
                       }
 
-                      })}
+                      }):""}
 
                     </Grid>
             </Grid>

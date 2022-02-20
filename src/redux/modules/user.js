@@ -14,31 +14,69 @@ import { set } from "lodash";
 //action
 
 const LOG_OUT = "LOG_OUT";
-const GET_USER = "GET_USER";
+const GET_USERS = "GET_USERS";
 const SET_USER = "SET_USER";
 const SECRET ="SECRET";
+const FOLLOW = "FOLLOW";
 
 
 
 //action creatos
 const setUser = createAction(SET_USER, (user , token) => ({ user, token }));
+const get_users = createAction(GET_USERS, ( user_list ) => ({ user_list }));
 const logOut = createAction(LOG_OUT, (  ) => ({  }));
-const secret = createAction(SECRET, ( value ) => ({ value }));
+const follow_user = createAction(FOLLOW, ( userKey ) => ({ userKey }));
 
 //initialState
 const initialState = {
     is_login : false,
-    user : {},
+    user : {
+        follow : [],
+        follower : [],
+        loginId : "",
+        userKey : "",
+        userProfileUrl : "",
+    },
+    user_list : [],
     token : "",
 };
 
 
 //middleware actions
 
-const loginUser=(user_data,token) =>{
+const loginUser=(loginData) =>{
     return async function (dispatch,getState){
-        setCookie("is_login",token);
-        dispatch(setUser(user_data,token));
+        let token = "";
+        instance.post('/user/login',loginData).then((res) =>{
+            token = res.headers.authorization;
+            setCookie("is_login",token);
+            
+            const user_data ={
+            }
+
+            dispatch(setUser(user_data,token));
+        }).catch((err) => {
+            console.log(err);
+            window.alert("로그인에 실패하였습니다.")
+        })
+    }
+}
+
+const getUsers=() =>{
+    return async function (dispatch,getState){
+        const Auth = getCookie("is_login");
+
+        instance({
+            method : "get",
+            url : "/users",
+            data : {},
+            headers : {
+                "Content-type" : "application/json;charset-UTF-8",
+                authorization: Auth,
+            }
+        }).then(res=>{
+            dispatch(get_users(res.data.data.userList))
+        })
     }
 }
 
@@ -56,12 +94,12 @@ const loginCheck=() =>{
                     authorization: Auth,
                 }
             }).then(res=>{
-                console.log(res)
                 const _user = {
-                    uid : res.data.id,
-                    user_id : res.data.username,
-                    nickname : res.data.nickname,
-                    user_profile : res.data.user_profile
+                    follow : res.data.data.follow,
+                    follower : res.data.data.follower,
+                    loginId : res.data.data.loginId,
+                    userKey : res.data.data.userKey,
+                    userProfileUrl : res.data.data.userProfileUrl,
                 }
                 dispatch(setUser(_user,Auth));
             })
@@ -82,16 +120,30 @@ const updateUser=() =>{
         const Auth = getCookie("is_login");
 
         if(Auth !== undefined){
-
             
-        
+
         }
     }
 }
 
-const secretDiary = (value) =>{
+const followUser=(userKey) =>{
     return async function (dispatch,getState){
-        dispatch(secret(value));
+        const Auth = getCookie("is_login");
+
+        if(Auth !== undefined){
+            instance({
+                method : "post",
+                url : `/user/${userKey}/follow`,
+                data : {},
+                headers : {
+                    "Content-type" : "application/json;charset-UTF-8",
+                    authorization: Auth,
+                }
+            }).then(res=>{
+                dispatch(follow_user(userKey))
+            })
+
+        }
     }
 }
 
@@ -105,15 +157,26 @@ export default handleActions(
             draft.token = action.payload.token;
             draft.user = action.payload.user;
         }),
+        [GET_USERS]: (state, action) =>
+        produce(state, (draft) => {
+            draft.user_list = [...action.payload.user_list];
+        }),
         [LOG_OUT]: (state, action) =>
         produce(state, (draft) => {
             draft.is_login=false;
             draft.user = {};
         }),
-        [SECRET]: (state, action) =>
+        [FOLLOW]: (state, action) =>
         produce(state, (draft) => {
-            draft.secret = action.payload.value;
+            console.log(state.user.follow.reduce((x,v,i)=> v===action.payload.userKey?true:x,false))
+            if(state.user.follow.reduce((x,v,i)=> v===action.payload.userKey?true:x,false)){
+                draft.user.follow.pop(action.payload.userKey);
+            }
+            else{
+                draft.user.follow.push(action.payload.userKey);
+            }
         }),
+
 
     },
     initialState
@@ -125,7 +188,8 @@ const actionCreators = {
     loginUser,
     logoutUser,
     loginCheck,
-    secretDiary,
+    getUsers,
+    followUser,
 
 };
 

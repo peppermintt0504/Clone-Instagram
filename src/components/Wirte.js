@@ -41,38 +41,37 @@ const Write = (props) => {
         
         formData.append("userProfile",file);
         
-        //포스트 작성
-        // const formDataTemp = new FormData();
-        // formDataTemp.append("postImg",file)
-        // formDataTemp.append("postImg",file)
-        // formDataTemp.append("postContents","포스트 내용")
-        // formDataTemp.append("postImgCount",1)
-        // formDataTemp.append("postTag",["안녕","태그"])
-        // const tempData ={
-        //     postContents : "포스트 내용",
-        //     postImgCount : 1,
-        //     postImg : formData,
-        //     postTag : ["안녕","태그"],
-        // }
+        // 포스트 작성
+        const formDataTemp = new FormData();
+        formDataTemp.append("postImg",file)
+        formDataTemp.append("postContents","포스트 내용2")
+        formDataTemp.append("postImgCount",1)
+        formDataTemp.append("postTag",["안녕","태그"])
+        const tempData ={
+            postContents : "포스트 내용",
+            postImgCount : 1,
+            postImg : formData,
+            postTag : ["안녕","태그"],
+        }
+        instance({
+        method : "post",
+        url : "/posts",
+        data : formDataTemp,
+        headers : {
+            "Content-Type": "multipart/form-data",
+            authorization: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJxd2Vxd2UxMjMiLCJhdXRoIjoiUk9MRV9VU0VSIiwiZXhwIjoxNjQ1MzY3NTczfQ.UJUcksKhB3ulQ2ty1YSAZ_jkIZFjOaSSuKjwU7UepcX7Nz15zGpuCqOgRfySUEUAxR2FHNsXJ7hQ2Ok4EUW1DA",
+        }
+        })
+
         // instance({
-        // method : "post",
-        // url : "/posts",
-        // data : formDataTemp,
+        // method : "delete",
+        // url : "/posts/2",
+        // data : {},
         // headers : {
-        //     "Content-Type": "multipart/form-data",
+        //     "Content-Type": "application/json;charset-UTF-8",
         //     authorization: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJxd2Vxd2UiLCJhdXRoIjoiUk9MRV9VU0VSIiwiZXhwIjoxNjQ1Mjg5MTYyfQ.yxYjLnesCQulOOlTGMS7_CK1o61Eysuc6Pa6ydghI8o3smHJwpIAjcseM7LwZBiMpDg6nBtaUmxDWaRGTfr9kw",
         // }
-        // })
-
-        instance({
-        method : "delete",
-        url : "/posts/2",
-        data : {},
-        headers : {
-            "Content-Type": "application/json;charset-UTF-8",
-            authorization: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJxd2Vxd2UiLCJhdXRoIjoiUk9MRV9VU0VSIiwiZXhwIjoxNjQ1Mjg5MTYyfQ.yxYjLnesCQulOOlTGMS7_CK1o61Eysuc6Pa6ydghI8o3smHJwpIAjcseM7LwZBiMpDg6nBtaUmxDWaRGTfr9kw",
-        }
-        }).then(res => console.log(res))
+        // }).then(res => console.log(res))
         
         // instance({
         //     method : "get",
@@ -124,7 +123,7 @@ const Write = (props) => {
                     B_bottom_left_radius="15px" B_bottom_right_radius="15px"
                     BG_c="white">
                         <Image width="100px" height="80px" src="/addPost.jpg"/>
-                        <Text>버튼을 눌러 사진을 추가하세요</Text>
+                        <Text margin="20px" F_size="22px">버튼을 눌러 사진을 추가하세요</Text>
                         <Button _onClick={()=>{fileInput.current.click()}} font_weight="600" font_color="white" B_radius="5px" Border="0px solid #0095f6" BG_color="#0095f6" width="120px" height="30px" >컴퓨터에서 선택</Button>
                         <input ref={fileInput} onChange={selectFile} type="file" style={{display:'none'}}/>
                     </Grid>

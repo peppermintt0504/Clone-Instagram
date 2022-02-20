@@ -33,7 +33,7 @@ import { setCookie } from "../shared/Cookie";
 
 
 //import Actions
-
+import { actionCreators as userActions } from "../redux/modules/user";
 
 //import axios
 import instance from "../shared/Request";
@@ -65,25 +65,21 @@ const theme = createTheme({
 
 function Login() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         // eslint-disable-next-line no-console
 
-        const signupData = {
+        const loginData = {
             loginId: data.get('loginID'),
             password: data.get('password'),
         };
-        console.log(signupData);
 
-        instance.post('/user/login',signupData).then((res) =>{
-            setCookie("is_login",res.headers.authorization);
-            navigate("/");
-        }).catch((err) => {
-            console.log(err);
-            window.alert("로그인에 실패하였습니다.")
-        })
+        dispatch(userActions.loginUser(loginData));
+        navigate("/");
+        
     };
     
     return (

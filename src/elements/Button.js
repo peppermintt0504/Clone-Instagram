@@ -60,7 +60,7 @@ const Button = (props) => {
 
 Button.defaultProps ={
 
-    height : "50px",
+    height : "30px",
     width : "100px",
     margin : null,
 

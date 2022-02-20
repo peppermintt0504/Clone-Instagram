@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Main />}/>
         <Route path="/login" element={<Login />}/>
         <Route path="/signup" element={<SignUp />}/>
-        <Route path="/userpage/:userId" element={<Userpage />}/>
+        <Route path="/userpage/:userKey" element={<Userpage />}/>
       </Routes>
     </React.Fragment>
   );
