@@ -1,16 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import CardMedia from '@mui/material/CardMedia';
-import { Image } from '../elements';
-import CloseIcon from '@mui/icons-material/Close';
 import Cardheader from './Cardheader';
 import LikeChat from './LikeChat';
 import ChatBox from './ChatBox';
-import { Grid,Input,Text } from "../elements" ;
+import { Grid,Input,Text,Image } from "../elements" ;
 import Img from './Img';
+import ChatContents from './ChatContents';
 
 
 
@@ -45,29 +41,14 @@ export default function Detail(props) {
           </Cardheader>
           <hr></hr>
 
-
-          <Grid is_flex flex_wrap="wrap" align_items="stretch" flex_direction="row" width="400px">
-            <Grid height="50px" is_flex flex_direction="column"  justify_content="start">
-              <Image magin="0px"
-              shape="circle"
-              src ="https://3.bp.blogspot.com/-x4gLW4b7sB4/XHE3SYQbIpI/AAAAAAAA4nM/SFGGsj7HgyELAWCFQfanqqQwwBJfg30YACLcBGAs/s1600/01.jpg"
-              size = "40"
-              />
-              
-            </Grid>
-    
-            <Grid width="300px">
-              <Typography variant="body2" color="black" align="justify">
-                <Text><strong>yejin   </strong>css...🔥🔥🔥🔥 안녕
-                말을 길게 쳐보자 말을 길게 쳐보자말을 길게 쳐보자말을 길게 쳐보자말을 길게 쳐보자말을 길게 쳐보자말을 길게 쳐보자말을 길게 쳐보자</Text>
-              </Typography>
-            </Grid>
-
-          </Grid>
+          <ChatContents/>
 
           <Grid position="absolute" bottom="0px" width="400px">
             <hr></hr>
             <LikeChat modal={false}/>
+            <Grid margin_top="10px" margin_left="16px">
+                    <Typography variant="body2" color="text.secondary" align="justify" margin-top="10px">1일전</Typography>
+            </Grid>
             <hr></hr>
             <ChatBox/>
           </Grid>

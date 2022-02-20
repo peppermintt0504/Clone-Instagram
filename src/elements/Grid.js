@@ -19,7 +19,7 @@ const Grid = (props) => {
     
     //size, position category
     const { width, height, max_width, min_width, max_height, min_height,
-            margin, margin_left, padding, gap, row_gap, column_gap,
+            margin, margin_left, margin_top, padding, padding_left, gap, row_gap, column_gap,
             position, top, bottom,right,
             z_index } = props;
         
@@ -49,7 +49,7 @@ const Grid = (props) => {
         
         width, height, max_width, min_width, max_height, min_height,
 
-        margin, margin_left, padding, gap, row_gap, column_gap,
+        margin, margin_left, margin_top, padding, padding_left, gap, row_gap, column_gap,
         position,top, bottom, right,
         z_index,
 
@@ -83,7 +83,7 @@ Grid.defaultProps ={
     width : null, height : null,
     max_width : null, min_width : null, max_height : null, min_height : null, 
 
-    padding : false, margin : false, margin_left : null, gap: false, row_gap: false, column_gap: false, vertical_align:false,
+    padding : false, padding_left:false, margin : false, margin_left : null, margin_top : null, gap: false, row_gap: false, column_gap: false, vertical_align:false,
     position : null, top : null, bottom : null, right : null,
 
     z_index :null,
@@ -114,8 +114,10 @@ const GridBox = styled.div`
     min-height : ${props => props.min_height};
 
     padding :${props => props.padding};
+    padding-left : ${props => props.padding_left};
     margin : ${props => props.margin};
     margin-left : ${props => props.margin_left};
+    margin-top : ${props => props.margin_top};
     gap : ${props => props.gap};
     row-gap :${props => props.row_gap};
     column-gap : ${props => props.column_gap};
