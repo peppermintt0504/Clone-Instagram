@@ -20,7 +20,7 @@ import {  Grid, Input, Image, Text, Button } from "../elements"
 
 
 //import Actions
-
+import { actionCreators as postActions } from "../redux/modules/post";
 
 //import axios
 import instance from "../shared/Request";
@@ -47,52 +47,7 @@ const Write = (props) => {
         formDataTemp.append("postContents","포스트 내용2")
         formDataTemp.append("postImgCount",1)
         formDataTemp.append("postTag",["안녕","태그"])
-        const tempData ={
-            postContents : "포스트 내용",
-            postImgCount : 1,
-            postImg : formData,
-            postTag : ["안녕","태그"],
-        }
-        instance({
-        method : "post",
-        url : "/posts",
-        data : formDataTemp,
-        headers : {
-            "Content-Type": "multipart/form-data",
-            authorization: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJxd2Vxd2UxMjMiLCJhdXRoIjoiUk9MRV9VU0VSIiwiZXhwIjoxNjQ1MzY3NTczfQ.UJUcksKhB3ulQ2ty1YSAZ_jkIZFjOaSSuKjwU7UepcX7Nz15zGpuCqOgRfySUEUAxR2FHNsXJ7hQ2Ok4EUW1DA",
-        }
-        })
-
-        // instance({
-        // method : "delete",
-        // url : "/posts/2",
-        // data : {},
-        // headers : {
-        //     "Content-Type": "application/json;charset-UTF-8",
-        //     authorization: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJxd2Vxd2UiLCJhdXRoIjoiUk9MRV9VU0VSIiwiZXhwIjoxNjQ1Mjg5MTYyfQ.yxYjLnesCQulOOlTGMS7_CK1o61Eysuc6Pa6ydghI8o3smHJwpIAjcseM7LwZBiMpDg6nBtaUmxDWaRGTfr9kw",
-        // }
-        // }).then(res => console.log(res))
-        
-        // instance({
-        //     method : "get",
-        //     url : "/posts",
-        //     data : {},
-        //     headers : {
-        //         "Content-Type": "application/json;charset-UTF-8",
-        //         authorization: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJxd2Vxd2UiLCJhdXRoIjoiUk9MRV9VU0VSIiwiZXhwIjoxNjQ1Mjg5MTYyfQ.yxYjLnesCQulOOlTGMS7_CK1o61Eysuc6Pa6ydghI8o3smHJwpIAjcseM7LwZBiMpDg6nBtaUmxDWaRGTfr9kw",
-        //     }
-        //     }).then(res => console.log(res))
-
-        
-        // instance({
-        //     method : "post",
-        //     url : "/user/profile",
-        //     data : formData,
-        //     headers : {
-        //         "Content-Type": "multipart/form-data",
-        //         authorization: "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJxd2Vxd2UiLCJhdXRoIjoiUk9MRV9VU0VSIiwiZXhwIjoxNjQ1MjUyMDQwfQ.vEfEUDtHyVBJFLgV39JWFbV9uBOhiwIO2vPmlfePllvV5UccVU6ZyGT7Kq9Fn8cuV44bh-ZzXJSQe-S4TH-XMA",
-        //     }
-        //     })
+        dispatch(postActions.addPost(formDataTemp));
     }
 
     

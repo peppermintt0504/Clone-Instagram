@@ -50,11 +50,24 @@ const loginUser=(loginData) =>{
         instance.post('/user/login',loginData).then((res) =>{
             token = res.headers.authorization;
             setCookie("is_login",token);
-            
-            const user_data ={
-            }
-
-            dispatch(setUser(user_data,token));
+            instance({
+                method : "get",
+                url : "/user/myinfo",
+                data : {},
+                headers : {
+                    "Content-type" : "application/json;charset-UTF-8",
+                    authorization: token,
+                }
+            }).then(res=>{
+                const _user = {
+                    follow : res.data.data.follow,
+                    follower : res.data.data.follower,
+                    loginId : res.data.data.loginId,
+                    userKey : res.data.data.userKey,
+                    userProfileUrl : res.data.data.userProfileUrl,
+                }
+                dispatch(setUser(_user,token));
+            })
         }).catch((err) => {
             console.log(err);
             window.alert("로그인에 실패하였습니다.")
