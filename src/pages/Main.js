@@ -25,11 +25,19 @@ import instance from "../shared/Request";
 
 
 function Main(props) {
-    
+    const postList = useSelector((state) => state.post.list);
     return (
     <React.Fragment>
         <Header/>
-        <MainCard/>
+        {postList.map((p, idx) => {
+            return(
+                <MainCard
+                    key={idx}
+                    {...p}
+                />
+            )
+
+        })}
     </React.Fragment>
     );
 

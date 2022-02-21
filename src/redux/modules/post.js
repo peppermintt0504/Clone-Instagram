@@ -16,7 +16,7 @@ const EDIT_POST = "EDIT_POST";
 
 //action creatos
 
-const set = createAction(SET_POST, (Post_list) => ({ Post_list }));
+const set = createAction(SET_POST, (Post_list) => ({ Post_list })); //게시글조회
 const add = createAction(ADD_POST, (Post_data) => ({ Post_data }));
 const del = createAction(DEL_POST, (Post_data) => ({ Post_data }));
 const edit = createAction(EDIT_POST, (post, postId) => ({post, postId}));
@@ -52,7 +52,7 @@ const getPost=() =>{
 }
 
 //게시글 작성
-const addPost=(post_data) =>{
+const addPost=(post_data, postImg, postContents) =>{
     return async function (dispatch,getState){
         const token = getCookie("is_login");
 
@@ -66,7 +66,9 @@ const addPost=(post_data) =>{
                     authorization: token,
                 }
             }).then(res =>{
-                console.log(res.data);
+                const postKey = res.data;
+                console.log(res.data)
+                dispatch(add({...res.data,postImg}));
                 
             })
         }

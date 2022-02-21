@@ -39,7 +39,7 @@ export default function MainCard(props) {
   return (
     // <ThemeProvider>
     <div className='mainbox'>
-      <Card sx={{ maxWidth: 600, margin: "auto",}}>
+      <Card sx={{ maxWidth: 600, margin: "auto", mb: 4}}>
 
         <Cardheader/>
 

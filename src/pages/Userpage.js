@@ -81,7 +81,7 @@ function Userpage() {
 
                     <Grid is_flex flex_direction = "column" width = "50%" >
                         <Grid width="100%" is_flex flex_direction = "row">
-                            <Text F_size="25px" width = "200px">{pageUser?pageUser.loginId:""}</Text>
+                            <Text F_size="25px" width = "200px">{pageUser.loginId}</Text>
                             {_user.user.userKey === _userKey?
                             <div>
                             <Button _onClick={()=>{fileInput.current.click()}} Border="1px solid #dbdbdb" B_radius="4px" width = "120px" height="30px" font_size="14px" font_weight="600" text = "프로필 사진 변경" />
