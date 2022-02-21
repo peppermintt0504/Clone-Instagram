@@ -31,8 +31,8 @@ export default function Detail(props) {
     <div>
         <Box sx={style}>
 
-          <div style={{ width: "800px", height: "740px"}}>
-            <Img setHeight={"740px"}/>
+          <div style={{ width: "800px", height: "450px"}}>
+            <Img img="true" setHeight={"740px"}/>
           </div>
         
         <Grid width="400px">

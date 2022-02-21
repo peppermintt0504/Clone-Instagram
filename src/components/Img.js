@@ -4,20 +4,25 @@ import { Carousel } from "react-responsive-carousel";
 import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Grid } from "../elements";
 
-function Img (props) {
+import {  Input, Image, Text, Button } from "../elements" 
 
-    const [height, setHeight] = React.useState("600px");
-    const handleHeight = () => {
-      return props.img? setHeight("600px"):setHeight("740px")
-    }
+
+function Img (props) { 
+  console.log(props.img)
+
     
     return (
-      <Carousel showThumbs={false} infiniteLoop={true} height={height}>
-        <Grid height={handleHeight}>
-        <img src="https://img.insight.co.kr/static/2019/07/29/700/ho8dty32zw1h3jth4l4a.jpg" />
+      <Carousel showThumbs={false} infiniteLoop={true} height={props.img!==undefined?"740px":"600px"}>
+        <Grid height={props.img?"740px":"600px"}>
+          <img src="https://img.insight.co.kr/static/2019/07/29/700/ho8dty32zw1h3jth4l4a.jpg" />
         </Grid>
-        <div style={{ height: "200px"}}></div>
-        <div style={{ height: "200px"}}></div>
+        <Grid height={props.img?"740px":"600px"}>
+          <img src="https://img.insight.co.kr/static/2019/07/29/700/ho8dty32zw1h3jth4l4a.jpg" />
+        </Grid>
+        <Grid height={props.img?"740px":"600px"}>
+          <img src="https://img.insight.co.kr/static/2019/07/29/700/ho8dty32zw1h3jth4l4a.jpg" />
+        </Grid>
+
       </Carousel>
     );
 }
