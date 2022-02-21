@@ -24,7 +24,7 @@ import {  Grid, Input, Image, Text, Button } from "../elements"
 
 //import axios
 import instance from "../shared/Request";
-
+import { actionCreators as PostActions } from "../redux/modules/post";
 
 const Write = (props) => {
     const dispatch = useDispatch();
@@ -40,6 +40,10 @@ const Write = (props) => {
 
         
         formData.append("userProfile",file);
+
+        // const addPost = () => {
+        //     dispatch(PostActions.addPostDB(postImg,postContents));
+        // };
         
         // 포스트 작성
         const formDataTemp = new FormData();
