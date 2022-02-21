@@ -34,7 +34,7 @@ const initialState = {
         follow : [],
         follower : [],
         loginId : "",
-        userKey : "",
+        userKey : -1,
         userProfileUrl : "",
     },
     user_list : [],

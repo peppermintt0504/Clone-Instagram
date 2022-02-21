@@ -66,7 +66,9 @@ const Header = (props) => {
             <Grid margin="0" padding="0px" B_bottom="1px solid #dbdbdb" flex_wrap = "nowrap" z_index = "9" top="0px" position="fixed" height="57px" BG_c="#fff" width="100%" justify_content="space-between" is_flex padding="4px 16px">
             
             <Grid padding="0 20px" width ="70%" max_width='960px' height='57px' BG_c="" margin='0 auto' is_flex justify_content='space-between' >
-                <img width={"120px"} alt="instagram letter Logo" src="/Logo/Logo5.png"/>
+                <div onClick={()=>{navigate('/')}}>
+                    <img width={"120px"} alt="instagram letter Logo" src="/Logo/Logo5.png"/>
+                </div>
                 <Grid is_flex flex_direction="row">
                 <IconButton onClick={()=>{console.log(" ")}} ><HomeOutlinedIcon sx={{ margin :"10px"}}/></IconButton>
                 <IconButton onClick={()=>{console.log(" ")}} ><SendOutlinedIcon sx={{ margin :"10px"}}/></IconButton>    
