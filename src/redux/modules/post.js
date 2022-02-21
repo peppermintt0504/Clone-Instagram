@@ -12,12 +12,14 @@ const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
 const DEL_POST = "DEL_POST";
 const UPDATE_POST = "UPDATE_POST";
+const EDIT_POST = "EDIT_POST";
 
 //action creatos
 
 const set = createAction(SET_POST, (Post_list) => ({ Post_list }));
 const add = createAction(ADD_POST, (Post_data) => ({ Post_data }));
 const del = createAction(DEL_POST, (Post_data) => ({ Post_data }));
+const edit = createAction(EDIT_POST, (post, postId) => ({post, postId}));
 const update = createAction(UPDATE_POST, (Post_data) => ({ Post_data}));
 
 //initialState
@@ -27,6 +29,8 @@ const initialState = {
 
 
 //middleware actions
+
+//게시글 조회
 const getPost=() =>{
     return async function (dispatch,getState){
         const token = getCookie("is_login");
@@ -47,6 +51,7 @@ const getPost=() =>{
     }
 }
 
+//게시글 작성
 const addPost=(post_data) =>{
     return async function (dispatch,getState){
         const token = getCookie("is_login");
