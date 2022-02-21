@@ -36,6 +36,7 @@ export default function MainCard(props) {
   // const handleOpen = () => setOpen(true);
   // const handleClose = () => setOpen(false);
 
+  const temp = ["https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.pinimg.com%2F736x%2F10%2F3d%2F80%2F103d80df68d76737cf0e429218a7fc43.jpg&type=sc960_832","https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA3MTlfMTkz%2FMDAxNjI2Njc4NDIzODMz.aC0x1meQstYrpthqbqL6sEEs3JR_tsryOjMaarQCG5gg.Ql0BsvZPWz0mH1UtKKGTUJYBau3FcgNCEpXIDaTKdNkg.JPEG.gwmfruckwrl%2F190207-jennie-22.jpeg&type=a340"];
   return (
     // <ThemeProvider>
     <div className='mainbox'>
@@ -43,7 +44,7 @@ export default function MainCard(props) {
 
         <Cardheader/>
 
-        <Img setHeight={"600px"}/>
+        <Img count={temp.length} imgURL={temp} size="600px"/>
 
         <LikeChat modal={true}/>
         

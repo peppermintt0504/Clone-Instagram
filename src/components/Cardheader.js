@@ -33,7 +33,7 @@ import { BsFolder } from "react-icons/bs";
 function Cardheader(props) {
     
     return (
-         <CardHeader sx={{ width:40 }}
+        <CardHeader sx={{ width:40 }}
           avatar={
             <Image
             shape="circle"
