@@ -55,7 +55,7 @@ const addPost=(post_data) =>{
             instance({
                 method : "post",
                 url : "/posts",
-                data : {},
+                data : post_data,
                 headers : {
                     "Content-Type": "multipart/form-data",
                     authorization: token,
@@ -157,6 +157,8 @@ export default handleActions(
 //action creator export
 const actionCreators = {
     getPost,
+    addPost,
+
 
 
 };
