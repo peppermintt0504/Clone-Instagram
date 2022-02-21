@@ -63,9 +63,6 @@ Image.defaultProps = {
     size: "200",
     width : null,
     height : null,
-// <<<<<<< HEAD
-//     margin : "0px",
-// =======
     margin : "5px",
     flex : null,
 };

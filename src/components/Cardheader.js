@@ -38,7 +38,7 @@ function Cardheader(props) {
             <Image
             shape="circle"
             src ="https://3.bp.blogspot.com/-x4gLW4b7sB4/XHE3SYQbIpI/AAAAAAAA4nM/SFGGsj7HgyELAWCFQfanqqQwwBJfg30YACLcBGAs/s1600/01.jpg"
-            size = "30"
+            size = "35"
             margin = "0"
             />
           }
