@@ -5,7 +5,7 @@ import styled from "styled-components";
 const Button = (props) => {
 
     //Border category
-    const { Border, B_radius,   } = props;
+    const { border, B_radius,   } = props;
     
     //Background category
     const { BG_color, box_shadow,   } = props;
@@ -14,7 +14,7 @@ const Button = (props) => {
     const { font_color, font_size, font_weight  } = props;
     
     //size, position category
-    const { width, height, margin, position, top, right, bottom,  } = props;
+    const { width, height, margin, padding , position, top, right, bottom,  } = props;
 
 
     //event category
@@ -31,7 +31,7 @@ const Button = (props) => {
 
 
     const sytles = {
-        Border,
+        border,
         B_radius,
 
         BG_color,
@@ -45,7 +45,7 @@ const Button = (props) => {
 
         width,
         height,
-        margin,
+        margin,padding,
 
     }
 
@@ -62,7 +62,7 @@ Button.defaultProps ={
 
     height : "30px",
     width : "100px",
-    margin : null,
+    margin : null, padding :null,
 
     position : null,
     top : null,
@@ -79,7 +79,7 @@ Button.defaultProps ={
 
 const Btn = styled.button`
 
-    border :            ${props => props.Border};
+    border :            ${props => props.border};
     border-radius :     ${props => props.B_radius};
     
     background-color :  ${props => props.BG_color};
@@ -92,6 +92,7 @@ const Btn = styled.button`
     height :            ${props => props.height};
     width :             ${props => props.width};
     margin :            ${props => props.margin};
+    padding :           ${props => props.padding};
 
     position :          ${props => props.position};
     top :               ${props => props.top};

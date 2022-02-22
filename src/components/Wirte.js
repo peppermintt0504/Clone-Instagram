@@ -15,7 +15,7 @@ import Avatar from '@mui/material/Avatar';
 
 
 //import Icon
-
+import CheckIcon from '@mui/icons-material/Check';
 
 // impot Component
 import Img from './Img';
@@ -38,50 +38,75 @@ const Write = (props) => {
 
 
     const fileInput = React.useRef();
+    const contents = React.useRef();
 
     const [fileSelected,setFileSelected] = React.useState(false);
     const [preview,setPreview] = React.useState([]);
+    const [tempFile,setTempFile] = React.useState([]);
+
+
     let tempData= [];
+    const formData = new FormData();
 
     const selectFile =(e) =>{
-        const formData = new FormData();
+        
         
         
         const file = fileInput.current.files[0];
         const files = fileInput.current.files;
+        setTempFile([...tempFile,files]);
+        
+        
         for(let i=0;i<files.length;i++){
+            formData.append("postImg",files[i]);
             const reader = new FileReader();
             reader.readAsDataURL(files[i]);
-
             reader.addEventListener("load",function () {
                 tempData.push(reader.result);
-                formData.append("userProfile",file);
                 if(tempData.length===files.length){
                     setPreview([...preview,...tempData])
-                    console.log(tempData);
                     setFileSelected(true);
+                    console.log(formData);
                 }
             }
         )
     }
         
         
-
-        // reader.readAsDataURL(files);
+        // const reader = new FileReader();    
+        // reader.readAsDataURL(file);
         // reader.onloadend =()=>{
         //     setPreview([...preview,reader.result])
         //     formData.append("userProfile",file);
             
-        //     // // 포스트 작성
-        //     // const formDataTemp = new FormData();
-        //     // formDataTemp.append("postImg",file)
-        //     // formDataTemp.append("postContents","포스트 내용2")
-        //     // formDataTemp.append("postImgCount",1)
-        //     // formDataTemp.append("postTag",["안녕","태그"])
-        //     // dispatch(postActions.addPost(formDataTemp));
+        //     // 포스트 작성
+        //     const formDataTemp = new FormData();
+        //     formDataTemp.append("postImg",file)
+        //     formDataTemp.append("postContents","포스트 내용2")
+        //     formDataTemp.append("postImgCount",1)
+        //     formDataTemp.append("postTag",["안녕","태그"])
+        //     dispatch(postActions.addPost(formDataTemp));
             
         // }
         
+    }
+
+    const addPost = () =>{
+        const postData = new FormData();
+        for(let i = 0; i<tempFile[0].length;i++){
+            postData.append("postImg",tempFile[0][i]);
+            console.log(tempFile[0][i]);
+        }
+        postData.append("postContents",contents.current.value);
+        postData.append("postImgCount",preview.length);
+        postData.append("postTag",[]);
+
+        console.log(contents.current.value);
+        console.log(tempFile[0]);
+        console.log(preview.length);
+        dispatch(postActions.addPost(postData));
+        
+
     }
 
     
@@ -98,7 +123,9 @@ const Write = (props) => {
                         <Grid B_bottom="1px solid #dbdbdb" is_flex min_width="648px" max_width="min(calc(100vw - 72px),1151px)" width="1151px" justify_content="space-between" height="42px" BG_c="">
                             <Grid width="42px" height="42px" B_top_left_radius="15px" BG_c="white"/>
                             <Grid is_flex width="100%" height="42px" BG_c="white" justify_content="center" vertical_align= "middle" align_items="center"><Text vertical_align= "middle">새 게시물 만들기</Text></Grid>
-                            <Grid width="42px" height="42px" B_top_right_radius="15px" BG_c="white"/>
+                            <Grid width="42px" height="42px" B_top_right_radius="15px" BG_c="white">
+                                <Button margin="7px 0 0 0" Border="0px" BG_color="white" width="30px" _onClick={addPost}><CheckIcon/></Button>
+                            </Grid>
                         </Grid>
                         <Grid
                             is_flex
@@ -123,7 +150,7 @@ const Write = (props) => {
                                         />
                                         <Text>{_user.user.loginId?_user.user.loginId:""}</Text>
                                     </Grid>
-                                    <TextArea rows="10" wrap="hard">
+                                    <TextArea ref={contents} rows="10" wrap="hard">
 
                                     </TextArea>
                                     

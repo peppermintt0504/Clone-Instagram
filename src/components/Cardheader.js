@@ -31,13 +31,12 @@ import { BsFolder } from "react-icons/bs";
 
 
 function Cardheader(props) {
-    
     return (
-        <CardHeader sx={{ width:40 }}
+        <CardHeader sx={{ padding:"0px 0px 0px 20px",height:"70px", width:40 }}
           avatar={
             <Image
             shape="circle"
-            src ="https://3.bp.blogspot.com/-x4gLW4b7sB4/XHE3SYQbIpI/AAAAAAAA4nM/SFGGsj7HgyELAWCFQfanqqQwwBJfg30YACLcBGAs/s1600/01.jpg"
+            src ={props.userProfile}
             size = "35"
             margin = "0"
             />
@@ -46,7 +45,7 @@ function Cardheader(props) {
         titleTypographyProps={{
           fontWeight: 600,
         }}
-          title="yejin" 
+          title={props.userId} 
 
         />
 

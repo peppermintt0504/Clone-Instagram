@@ -10,12 +10,14 @@ import instance from "../../shared/Request";
 //action
 const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
+const LIKE_POST = "LIKE_POST";
 const DEL_POST = "DEL_POST";
 const UPDATE_POST = "UPDATE_POST";
 
 //action creatos
 
 const set = createAction(SET_POST, (Post_list) => ({ Post_list }));
+const like = createAction(LIKE_POST,(postKey,userKey) => ({postKey,userKey}));
 const add = createAction(ADD_POST, (Post_data) => ({ Post_data }));
 const del = createAction(DEL_POST, (Post_data) => ({ Post_data }));
 const update = createAction(UPDATE_POST, (Post_data) => ({ Post_data}));
@@ -61,14 +63,16 @@ const addPost=(post_data) =>{
                     authorization: token,
                 }
             }).then(res =>{
-                console.log(res.data);
+                window.alert("정상적으로 게시물이 작성되었습니다.")
                 
+            }).catch(err=>{
+                window.alert("게시물이 실패하였습니다.")
             })
         }
     }
 }
 
-const likePost=(postKey) =>{
+const likePost=(postKey,userKey) =>{
     return async function (dispatch,getState){
         const token = getCookie("is_login");
 
@@ -82,7 +86,7 @@ const likePost=(postKey) =>{
                     authorization: token,
                 }
             }).then(res =>{
-                console.log(res.data);
+                dispatch(like(postKey,userKey));
                 
             })
         }
@@ -139,6 +143,17 @@ export default handleActions(
         produce(state, (draft) => {
             draft.list = [...action.payload.Post_list];
         }),
+        [LIKE_POST]: (state, action) =>
+        produce(state, (draft) => {
+            const index = state.list.reduce((x,v,i) => v.postKey === action.payload.postKey?i:x,"");
+            const is_include = state.list[index].postLike.reduce((x,v,i)=>v===action.payload.userKey?true:x,false);
+
+            if(is_include){
+                draft.list[index].postLike.pop(action.payload.userKey);
+            }else{
+                draft.list[index].postLike.push(action.payload.userKey);
+            }
+        }),
         [ADD_POST]: (state, action) =>
         produce(state, (draft) => {
             draft.list.push(action.payload.diary_data);
@@ -158,6 +173,7 @@ export default handleActions(
 const actionCreators = {
     getPost,
     addPost,
+    likePost,
 
 
 

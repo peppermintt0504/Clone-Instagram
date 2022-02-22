@@ -8,6 +8,8 @@ import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { BsChat } from "react-icons/bs";
+import {useDispatch, useSelector} from "react-redux";
+
 // import style from "styled-components";
 
 import '../shared/App.css';
@@ -30,35 +32,40 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function MainCard(props) {
+  const _user = useSelector(state=>state.user);
+  const _post = useSelector(state=>state.post);
+  
+  const postUser = _user.user_list.reduce((x,v,i)=>  v.userKey===props.userKey?v:x,"");
+  // console.log(_user);
+  // console.log(postUser);
   // let navigate = useNavigate();
 
   // const [open, setOpen] = React.useState(false);
   // const handleOpen = () => setOpen(true);
   // const handleClose = () => setOpen(false);
 
-  const temp = ["https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.pinimg.com%2F736x%2F10%2F3d%2F80%2F103d80df68d76737cf0e429218a7fc43.jpg&type=sc960_832","https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA3MTlfMTkz%2FMDAxNjI2Njc4NDIzODMz.aC0x1meQstYrpthqbqL6sEEs3JR_tsryOjMaarQCG5gg.Ql0BsvZPWz0mH1UtKKGTUJYBau3FcgNCEpXIDaTKdNkg.JPEG.gwmfruckwrl%2F190207-jennie-22.jpeg&type=a340"];
   return (
     // <ThemeProvider>
     <div className='mainbox'>
-      <Card sx={{ maxWidth: 600, margin: "auto",}}>
+      <Card sx={{ border: "1px solid #dbdbdb", maxWidth: 600, margin: "auto",}}>
 
-        <Cardheader/>
+        <Cardheader userId={postUser.loginId} userProfile={postUser.userProfileUrl}/>
 
-        <Img count={temp.length} imgURL={temp} size="600px"/>
+        <Img imgURL={props.postImg} size="600px"/>
 
-        <LikeChat modal={true}/>
+        <LikeChat like={props.postLike.length} postKey={props.postKey} modal={true}/>
         
         <CardContent>
-            <Typography variant="body2" color="black" align="justify">
-            <strong>yejin</strong> css...🔥🔥🔥🔥 안녕
-            말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 
-            </Typography>
-            <Typography variant="body2" color="text.secondary" align="justify">1일전</Typography>
+            <Text variant="body2" color="black" align="justify">
+            <strong>{postUser.loginId}</strong> 
+            {props.postContents}
+            </Text>
+            <Text margin="20px 0px 0px 0px" F_color="#8e8e8e" align="justify">{props.createdAt}</Text>
         </CardContent>
 
         <hr></hr>
 
-        <ChatBox/>
+        <ChatBox postKey={props.postKey}/>
 
       </Card>
       </div>
