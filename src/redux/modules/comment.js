@@ -16,65 +16,85 @@ const LOADING = "LOADING";
 
 
 //action creatos
-const setComment = createAction(SET_COMMENT, (diary_id, comment_list) => ({diary_id, comment_list}));
+const setComment = createAction(SET_COMMENT, (comment_list,postKey) => ({comment_list,postKey}));
 const addComment = createAction(ADD_COMMENT, (comment_data) => ({comment_data}));
 const loading = createAction(LOADING, (is_loading) => ({ is_loading }));
 
 
 //initialState
 const initialState = {
-  list: [],
-  is_loading: false,
+  list: {},
 };
 
 
 //middleware actions
-const getComment = (diary_id) => {
+const getComment = (postKey) => {
   return async function (dispatch,getState){
-    const diary_comment = RESP.COMMENT.list;
-
     const token = getCookie("is_login");
-    instance.defaults.headers.common["X-AUTH-TOKEN"] =token;
-    instance.get(`/api/comment/${diary_id}`,{}).then(res =>{
-        console.log("get :",res)
-        dispatch(setComment(diary_id, res.data));
-    });
+    console.log(postKey)
 
-
-    // console.log(diary_comment)
+    if(token){
+        instance({
+            method : "get",
+            url : `/posts/${postKey}/comment`,
+            data : {},
+            headers : {
+                "Content-Type": "application/json;charset-UTF-8",
+                authorization: token,
+            }
+        }).then(res =>{
+          dispatch(setComment(res.data.data.commentList,postKey))
+          console.log(res);
+        })
+    }
   }
 }
 
-const addCommentData = (diary_id,comment_data) => {
+const addCommentData = (postKey,comment) => {
   return async function (dispatch,getState){
-
     const token = getCookie("is_login");
-    instance.defaults.headers.common["X-AUTH-TOKEN"] =token;
+    console.log(postKey)
 
-    instance.post(`/api/comment/${diary_id}`,{comment : comment_data}).then(res => {
-      instance.get(`/api/comment/${diary_id}`,{}).then(res => {
-        console.log("get :",res)
-        dispatch(setComment(diary_id, res.data));
-        
-      });
-    });
-
+    if(token){
+        instance({
+            method : "post",
+            url : `posts/${postKey}/comment`,
+            data : {commentContents:comment},
+            headers : {
+                "Content-Type": "application/json;charset-UTF-8",
+                authorization: token,
+            }
+        }).then(res =>{
+          console.log(res)
+        }).catch((err)=>{
+          console.log(err);
+          window.alert()
+        })
+    }
   }
 }
 
-const delCommentData = (diary_id,comment_id) => {
+const delCommentData = (postKey,commentKey) => {
   return async function (dispatch,getState){
-
     const token = getCookie("is_login");
-    instance.defaults.headers.common["X-AUTH-TOKEN"] =token;
+    console.log(postKey)
 
-    instance.delete(`/api/comment/${comment_id}`,{}).then(res => {
-      instance.get(`/api/comment/${diary_id}`,{}).then(res => {
-        console.log("get :",res)
-        dispatch(setComment(comment_id, res.data));
-      });
-    });
-
+    if(token){
+        instance({
+            method : "post",
+            url : `posts/${postKey}/comment`,
+            data : {},
+            headers : {
+                "Content-Type": "application/json;charset-UTF-8",
+                authorization: token,
+            }
+        }).then(res =>{
+          console.log(res)
+        }).catch((err)=>{
+          console.log(err);
+          window.alert()
+        })
+    }
   }
 }
 
@@ -84,9 +104,7 @@ export default handleActions(
   {
       [SET_COMMENT]: (state, action) => 
       produce(state, (draft) => {
-        //console.log(action.payload.comment_list);
-        draft.list = [...action.payload.comment_list];
-        // console.log(state)
+        draft.list[action.payload.postKey] = [...action.payload.comment_list];
       }),
 
 
@@ -106,10 +124,7 @@ export default handleActions(
 
 const actionCreators = {
   getComment,
-  setComment,
-  addComment,
   addCommentData,
-  delCommentData,
 
 };
 

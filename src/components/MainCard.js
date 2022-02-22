@@ -30,14 +30,8 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function MainCard(props) {
-  // let navigate = useNavigate();
-
-  // const [open, setOpen] = React.useState(false);
-  // const handleOpen = () => setOpen(true);
-  // const handleClose = () => setOpen(false);
 
   return (
-    // <ThemeProvider>
     <div className='mainbox'>
       <Card sx={{ maxWidth: 600, margin: "auto", mb: 4}}>
 
@@ -49,10 +43,9 @@ export default function MainCard(props) {
         
         <CardContent>
             <Typography variant="body2" color="black" align="justify">
-            <strong>yejin</strong> css...🔥🔥🔥🔥 안녕
-            말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 말을 길게 쳐보자 
+            <strong>yejin</strong> {props.postContents}
             </Typography>
-            <Typography variant="body2" color="text.secondary" align="justify">1일전</Typography>
+            <Typography variant="body2" color="text.secondary" align="justify">{props.createdAt}</Typography>
         </CardContent>
 
         <hr></hr>

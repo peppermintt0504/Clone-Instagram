@@ -7,6 +7,7 @@ import ChatBox from './ChatBox';
 import { Grid,Input,Text,Image } from "../elements" ;
 import Img from './Img';
 import ChatContents from './ChatContents';
+import {useDispatch, useSelector} from "react-redux";
 
 
 
@@ -15,7 +16,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 1200,
+  width: 1140,
   height: 740,
   bgcolor: 'background.paper',
   border: 'none',
@@ -26,28 +27,32 @@ const style = {
 };
 
 export default function Detail(props) {
+  const _user = useSelector(state=>state.user);
+  const _post = useSelector(state=>state.post);
+
+  const thisPost = _post.list.reduce((x,v,i)=>  v.postKey===props.postKey?v:x,"");
+  const postUser = _user.user_list.reduce((x,v,i)=>  v.userKey===thisPost.userKey?v:x,"");
+
 
   return (
     <div>
         <Box sx={style}>
 
-          <div style={{ width: "800px", height: "450px"}}>
-            <Img img="true" setHeight={"740px"}/>
+          <div style={{ width: "740px", height: "450px"}}>
+            <Img imgURL={thisPost.postImg} size="740px"/>
           </div>
         
         <Grid width="400px">
-          <Cardheader>
-              <span>ㅁㄴㅇㄹ</span>
-          </Cardheader>
+          <Cardheader userId={postUser.loginId} userProfile={postUser.userProfileUrl}/> 
           <hr></hr>
 
           <ChatContents/>
 
           <Grid position="absolute" bottom="0px" width="400px">
             <hr></hr>
-            <LikeChat modal={false}/>
+            <LikeChat like={thisPost.postLike.length} postKey={thisPost.postKey} modal={false}/>
             <Grid margin_top="10px" margin_left="16px">
-                    <Typography variant="body2" color="text.secondary" align="justify" margin-top="10px">1일전</Typography>
+                    <Typography variant="body2" color="text.secondary" align="justify" margin-top="10px">{thisPost.createdAt}</Typography>
             </Grid>
             <hr></hr>
             <ChatBox/>

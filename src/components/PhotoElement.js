@@ -1,3 +1,4 @@
+
 //import Library
 import React from "react"
 import styled from "styled-components";
@@ -15,6 +16,8 @@ import { Button, Typography, Box, Modal } from '@mui/material';
 
 
 
+//import Actions
+
 
 //import elements
 import { Grid, Image, Text } from "../elements" 
@@ -23,34 +26,20 @@ import { Grid, Image, Text } from "../elements"
 
 
 // impot Component
-
-
 //import Actions
-import { actionCreators as commentActions } from "../redux/modules/comment";
+
 
 //import axios
 
 
-export default function ChatBox(props) {
-    const dispatch = useDispatch();
-
-    const _user = useSelector(state=>state.user);
-    const _post = useSelector(state=>state.post);
-
-    const contents = React.useRef();
-
-    const addComment = () =>{
-        dispatch(commentActions.getComment(props.postKey));
-
-    }
-
-
+export default function Photo(props) {
+    
     return (
-        <Grid is_flex margin="10px" justify_content="space-between">
-            <SentimentSatisfiedAltIcon className="SmileButton" fontSize="medium" />
-            <input ref={contents} className="CommentInputBox" placeholder="댓글 달기..."></input>
-            <Button onClick={addComment} variant="text">게시</Button>
-        </Grid>
+        
+    <Grid width={props.size} height={props.size}>
+        <img src= {props.imgURL} />
+    </Grid> 
     );
 
 }
+

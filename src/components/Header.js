@@ -47,8 +47,8 @@ const Header = (props) => {
     const _post = useSelector(state=>state.post);
     // console.log(1 in _user.user.follow)
 
-    console.log(_user);
-    // console.log(_post);
+    // console.log(_user);
+    console.log(_post);
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -71,9 +71,9 @@ const Header = (props) => {
                 </div>
                 <Grid is_flex flex_direction="row">
                 <IconButton onClick={()=>{console.log(" ")}} ><HomeOutlinedIcon sx={{ margin :"10px"}}/></IconButton>
-                <IconButton onClick={()=>{console.log(" ")}} ><SendOutlinedIcon sx={{ margin :"10px"}}/></IconButton>    
+                {/* <IconButton onClick={()=>{console.log(" ")}} ><SendOutlinedIcon sx={{ margin :"10px"}}/></IconButton>     */}
                 <IconButton onClick={handleOpen}><AddBoxOutlinedIcon  sx={{ margin :"10px"}}/></IconButton>    
-                <IconButton onClick={()=>{console.log(" ")}} ><FavoriteBorderOutlinedIcon sx={{ margin :"10px"}}/></IconButton>    
+                {/* <IconButton onClick={()=>{console.log(" ")}} ><FavoriteBorderOutlinedIcon sx={{ margin :"10px"}}/></IconButton>     */}
                 {_user.is_login?<IconButton onClick={()=>{navigate(`/userpage/${_user.user.userKey}`)}} ><Avatar sx={{ margin :"10px"}} alt="Remy Sharp" src={_user.user.userProfileUrl} /></IconButton> :""}
                 </Grid>
             </Grid>

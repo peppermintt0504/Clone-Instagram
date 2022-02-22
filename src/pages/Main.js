@@ -25,20 +25,22 @@ import instance from "../shared/Request";
 
 
 function Main(props) {
-    const postList = useSelector((state) => state.post.list);
-    return (
-    <React.Fragment>
-        <Header/>
-        {postList.map((p, idx) => {
-            return(
-                <MainCard
-                    key={idx}
-                    {...p}
-                />
-            )
 
-        })}
-    </React.Fragment>
+    const _user = useSelector(state=>state.user);
+    const _post = useSelector(state=>state.post);
+
+    return (
+    <Grid BG_c="#fafafa">
+        <Header/>
+
+        <Grid hight="100px">.</Grid>
+        {_post.list.map((v,i)=>(
+            <Grid key={i} margin="30px">
+                <MainCard key={i} {...v}/>
+            </Grid>
+        ))}
+        
+    </Grid>
     );
 
 }

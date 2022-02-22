@@ -182,12 +182,17 @@ export default handleActions(
         [FOLLOW]: (state, action) =>
         produce(state, (draft) => {
             console.log(state.user.follow.reduce((x,v,i)=> v===action.payload.userKey?true:x,false))
+            const index = state.user_list.reduce((x,v,i)=> v.userKey===action.payload.userKey?i:x,"");
+
             if(state.user.follow.reduce((x,v,i)=> v===action.payload.userKey?true:x,false)){
                 draft.user.follow.pop(action.payload.userKey);
+                draft.user_list[index].follower.pop(state.user.userKey);
             }
             else{
                 draft.user.follow.push(action.payload.userKey);
+                draft.user_list[index].follower.push(state.user.userKey);
             }
+
         }),
 
 
