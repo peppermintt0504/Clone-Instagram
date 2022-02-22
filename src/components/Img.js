@@ -6,7 +6,6 @@ import { Grid } from "../elements";
 
 import {  Input, Image, Text, Button } from "../elements" 
 
-import Photo from "./PhotoElement";
 
 const Img = (props) => {
   if(props.imgURL){

@@ -25,6 +25,9 @@ import Img from './Img';
 
 import instance from "../shared/Request";
 
+import moment from "moment";
+import 'moment/locale/ko'
+
 import '../shared/App.css';
 import { Text, Grid } from '../elements';
 
@@ -32,11 +35,19 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function MainCard(props) {
+  moment.locale('ko');
+  let t1 = new Date(props.createdAt);
+
   const _user = useSelector(state=>state.user);
   const _post = useSelector(state=>state.post);
   
   const postUser = _user.user_list.reduce((x,v,i)=>  v.userKey===props.userKey?v:x,"");
-  // console.log(_user);
+
+  const calcTime=moment.duration(moment()-t1).asHours() < 24 ?moment(t1, "YYYY-MM-DDThh:mm:ss").fromNow(''):moment(t1, "YYYY-MM-DDThh:mm:ss").format("LL");
+  console.log(calcTime);
+  
+
+  // console.log(_user);  
   // console.log(postUser);
   // let navigate = useNavigate();
 
@@ -49,7 +60,7 @@ export default function MainCard(props) {
     <div className='mainbox'>
       <Card sx={{ border: "1px solid #dbdbdb", maxWidth: 600, margin: "auto",}}>
 
-        <Cardheader userId={postUser.loginId} userProfile={postUser.userProfileUrl}/>
+        <Cardheader postKey={props.postKey} is_owner={_user.user.userKey===props.userKey} userId={postUser.loginId} userProfile={postUser.userProfileUrl}/>
 
         <Img imgURL={props.postImg} size="600px"/>
 
@@ -60,7 +71,7 @@ export default function MainCard(props) {
             <strong>{postUser.loginId}</strong> 
             {props.postContents}
             </Text>
-            <Text margin="20px 0px 0px 0px" F_color="#8e8e8e" align="justify">{props.createdAt}</Text>
+            <Text margin="20px 0px 0px 0px" F_color="#8e8e8e" align="justify">{calcTime}</Text>
         </CardContent>
 
         <hr></hr>

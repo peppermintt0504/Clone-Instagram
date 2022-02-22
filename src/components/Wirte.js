@@ -124,7 +124,7 @@ const Write = (props) => {
                             <Grid width="42px" height="42px" B_top_left_radius="15px" BG_c="white"/>
                             <Grid is_flex width="100%" height="42px" BG_c="white" justify_content="center" vertical_align= "middle" align_items="center"><Text vertical_align= "middle">새 게시물 만들기</Text></Grid>
                             <Grid width="42px" height="42px" B_top_right_radius="15px" BG_c="white">
-                                <Button margin="7px 0 0 0" Border="0px" BG_color="white" width="30px" _onClick={addPost}><CheckIcon/></Button>
+                                <Button margin="7px 0 0 0" border="0px" BG_color="white" width="30px" _onClick={addPost}><CheckIcon/></Button>
                             </Grid>
                         </Grid>
                         <Grid
@@ -179,7 +179,7 @@ const Write = (props) => {
                     BG_c="white">
                         <Image width="100px" height="80px" src="/addPost.jpg"/>
                         <Text margin="20px" F_size="22px">버튼을 눌러 사진을 추가하세요</Text>
-                        <Button _onClick={()=>{fileInput.current.click()}} font_weight="600" font_color="white" B_radius="5px" Border="0px solid #0095f6" BG_color="#0095f6" width="120px" height="30px" >컴퓨터에서 선택</Button>
+                        <Button _onClick={()=>{fileInput.current.click()}} font_weight="600" font_color="white" B_radius="5px" border="0px solid #0095f6" BG_color="#0095f6" width="120px" height="30px" >컴퓨터에서 선택</Button>
                         <input ref={fileInput} onChange={selectFile} type="file" multiple style={{display:'none'}}/>
                     </Grid>
                     </Grid>
