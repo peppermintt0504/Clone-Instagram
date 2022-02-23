@@ -44,7 +44,6 @@ export default function MainCard(props) {
   const postUser = _user.user_list.reduce((x,v,i)=>  v.userKey===props.userKey?v:x,"");
 
   const calcTime=moment.duration(moment()-t1).asHours() < 24 ?moment(t1, "YYYY-MM-DDThh:mm:ss").fromNow(''):moment(t1, "YYYY-MM-DDThh:mm:ss").format("LL");
-  console.log(calcTime);
   
 
   // console.log(_user);  

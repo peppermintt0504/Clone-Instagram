@@ -14,6 +14,10 @@ import {  Grid, Input, Image, Text } from "../elements"
 import Avatar from '@mui/material/Avatar';
 import { Modal } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 //import Icon
 import HomeIcon from '@mui/icons-material/Home';
@@ -50,14 +54,28 @@ const Header = (props) => {
     // console.log(_user);
     // console.log(_post);
 
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
     const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+
+    const [Mopen, setOpen] = React.useState(false);
+    const handleOpen = () => {
         if(!_user.is_login){
-            window.alert("로그인이 필요한 작업입니다.");
-            navigate('/login');
+        window.alert("로그인이 필요한 작업입니다.");
+        navigate('/login');
         }else{
-            setOpen(false);}
+        setOpen(true);}
+        
+    }
+
+    const MhandleClose = () => {
+            setOpen(false);
         }
 
     
@@ -77,24 +95,52 @@ const Header = (props) => {
                     <img width={"120px"} alt="instagram letter Logo" src="/Logo/Logo5.png"/>
                 </div>
                 <Grid is_flex flex_direction="row">
-                <IconButton onClick={()=>{navigate("/")}} ><HomeOutlinedIcon sx={{ margin :"10px"}}/></IconButton>
-                <IconButton onClick={()=>{navigate("/follow")}} ><GroupOutlinedIcon sx={{ margin :"10px"}}/></IconButton>    
-                <IconButton onClick={handleOpen}><AddBoxOutlinedIcon  sx={{ margin :"10px"}}/></IconButton>    
-                {/* <IconButton onClick={()=>{console.log(" ")}} ><FavoriteBorderOutlinedIcon sx={{ margin :"10px"}}/></IconButton>     */}
-                {_user.is_login?<IconButton onClick={()=>{navigate(`/userpage/${_user.user.userKey}`)}} ><Avatar sx={{ margin :"10px"}} alt="Remy Sharp" src={_user.user.userProfileUrl} /></IconButton> :""}
+                    <Tooltip title="Main"><IconButton sx={{width:"50px", height : "50px"}} onClick={()=>{navigate("/")}} ><HomeOutlinedIcon sx={{ margin :"10px"}}/></IconButton></Tooltip>
+                    <Tooltip title="follow"><IconButton sx={{width:"50px", height : "50px"}} onClick={()=>{navigate("/follow")}} ><GroupOutlinedIcon sx={{ margin :"10px"}}/></IconButton></Tooltip>    
+                    <Tooltip title="Add Post"><IconButton sx={{width:"50px", height : "50px"}} onClick={handleOpen}><AddBoxOutlinedIcon  sx={{ margin :"10px"}}/></IconButton></Tooltip>    
+                    {/* <IconButton onClick={()=>{console.log(" ")}} ><FavoriteBorderOutlinedIcon sx={{ margin :"10px"}}/></IconButton>     */}
+                    {_user.is_login?
+                    <Tooltip title="My Menu">
+                    <IconButton
+                    sx={{width:"50px", height : "50px"}}
+                    id="basic-button"
+                    aria-controls={open ? 'basic-menu' : undefined}
+                    aria-haspopup="true"
+                    aria-expanded={open ? 'true' : undefined}
+                    onClick={handleClick}
+                    >
+                        <Avatar sx={{ margin :"10px"}} alt="Remy Sharp" src={_user.user.userProfileUrl}/>
+                    </IconButton>
+                    </Tooltip>
+                    :""}
                 </Grid>
             </Grid>
             </Grid>
             <Grid margin = "57px"/>
+
+
+            <Menu
+                sx={{height:"120px",padding:"0px"}}
+                id="basic-menu"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                'aria-labelledby': 'basic-button',
+                }}
+            >
+                <MenuItem sx={{margin:"0px", fontSize:"12px"}} onClick={()=>{navigate(`/userpage/${_user.user.userKey}`)}}>Profile</MenuItem>
+                <MenuItem sx={{margin:"0px", fontSize:"12px"}} onClick={()=>{dispatch(userActions.logoutUser())}}>Logout</MenuItem>
+            </Menu>
             <Modal
-            open={open}
-            onClose={handleClose}
+            open={Mopen}
+            onClose={MhandleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
             >
             <Grid width="100vw" height="100vh" is_flex justify_content="center" align_items="center" position="relative" >
                 <Grid position='fixed' top="0" right="0">
-                <CloseIcon sx={{ color: 'white', fontSize: 40 }} onClick={handleClose}/>
+                <CloseIcon sx={{ color: 'white', fontSize: 40 }} onClick={MhandleClose}/>
                 </Grid>
                 <Write/>
                 

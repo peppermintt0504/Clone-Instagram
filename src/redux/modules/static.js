@@ -19,7 +19,7 @@ const initialState = {
 //middleware actions
 const openMadal=(is_open) =>{
     return async function (dispatch,getState){
-        dispatch(modalOpen(is_open));
+        dispatch(modalOpen(!is_open));
     }
 }
 

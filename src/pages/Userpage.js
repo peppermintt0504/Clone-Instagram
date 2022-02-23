@@ -39,7 +39,7 @@ function Userpage() {
   //state data
   const _user = useSelector(state=>state.user);
   const _post = useSelector(state=>state.post);
-  const _static = useSelector(state=>state.state);console.log(_static);
+  const _static = useSelector(state=>state.static);console.log(_static);
   
   //variable
   const _userKey = parseInt(useParams().userKey);
@@ -50,7 +50,7 @@ function Userpage() {
   const fileInput = React.useRef();
   const modalRef = React.useRef();
   const [is_open, setOpen] = React.useState(false);
-  const [modalKey, setModalKey] = React.useState(false);
+  const [modalKey, setModalKey] = React.useState("");
 
   //functions
   const selectFile =(e) =>{
@@ -76,8 +76,10 @@ function Userpage() {
     dispatch(userActions.followUser(_userKey));
   }
 
-  const useModal = () =>{
-    dispatch(staticActions.openMadal(_static.modal))
+  function useModal (postKey) {
+    dispatch(staticActions.openMadal(_static.modal));
+    // setModalKey()
+    console.log(postKey.target);
   }
 
     return (
@@ -121,9 +123,18 @@ function Userpage() {
                       if(index % 3===0 && pagePost.length - index -1 >= 2){
                         return(
                           <Grid key={index} width="calc(min(15vw,290px)*3 + 90px)" is_flex gap="30px">
-                            <Image  key={index}   max_width="290px" max_height="290px" width="15vw" height="15vw" src={pagePost[index  ].postImg[0]}/>
-                            <Image key={index+1} max_width="290px" max_height="290px" width="15vw" height="15vw" src={pagePost[index+1].postImg[0]}/>
-                            <Image key={index+2} max_width="290px" max_height="290px" width="15vw" height="15vw" src={pagePost[index+2].postImg[0]}/>
+                            <Image _onClick={()=>{
+                                setModalKey(pagePost[index].postKey);
+                                dispatch(staticActions.openMadal(_static.modal));
+                              }} key={index}   max_width="290px" max_height="290px" width="15vw" height="15vw" src={pagePost[index  ].postImg[0]}/>
+                            <Image _onClick={()=>{
+                                setModalKey(pagePost[index+1].postKey);
+                                dispatch(staticActions.openMadal(_static.modal));
+                              }} key={index+1} max_width="290px" max_height="290px" width="15vw" height="15vw" src={pagePost[index+1].postImg[0]}/>
+                            <Image _onClick={()=>{
+                                setModalKey(pagePost[index+2].postKey);
+                                dispatch(staticActions.openMadal(_static.modal));
+                              }} key={index+2} max_width="290px" max_height="290px" width="15vw" height="15vw" src={pagePost[index+2].postImg[0]}/>
                           </Grid>
                         )
                       }
@@ -131,22 +142,31 @@ function Userpage() {
                         if(pagePost.length - index -1 === 0 ){
                           return(
                             <Grid key={index}  width="calc(min(15vw,290px)*3 + 90px)" is_flex flex gap="30px">
-                              <Image _onClick={useModal} key={index} width="calc(min(15vw,290px))" height="calc(min(15vw,290px))" src={pagePost[index].postImg[0]}/>
+                              <Image _onClick={()=>{
+                                setModalKey(pagePost[index].postKey);
+                                dispatch(staticActions.openMadal(_static.modal));
+                              }} key={index} width="calc(min(15vw,290px))" height="calc(min(15vw,290px))" src={pagePost[index].postImg[0]}/>
                             </Grid>
                           )
                         }
                         if(pagePost.length - index -1 === 1 ){
                           return(
                             <Grid key={index}  width="calc(min(15vw,290px)*3 + 90px)" is_flex flex gap="30px">
-                              <Image key={index  } width="calc(min(15vw,290px))" height="calc(min(15vw,290px))" src={pagePost[index  ].postImg[0]}/>
-                              <Image key={index+1} width="calc(min(15vw,290px))" height="calc(min(15vw,290px))" src={pagePost[index+1].postImg[0]}/>
+                              <Image _onClick={()=>{
+                                setModalKey(pagePost[index].postKey);
+                                dispatch(staticActions.openMadal(_static.modal));
+                              }} key={index  } width="calc(min(15vw,290px))" height="calc(min(15vw,290px))" src={pagePost[index  ].postImg[0]}/>
+                              <Image _onClick={()=>{
+                                setModalKey(pagePost[index+1].postKey);
+                                dispatch(staticActions.openMadal(_static.modal));
+                              }} key={index+1} width="calc(min(15vw,290px))" height="calc(min(15vw,290px))" src={pagePost[index+1].postImg[0]}/>
                             </Grid>
                           )
                         }
                       }
 
                       }):""}
-                      <DetailModal postKey={modalKey} open={is_open} ></DetailModal>
+                      <DetailModal postKey={modalKey} modal></DetailModal>
 
 
                     </Grid>

@@ -39,7 +39,6 @@ export default function LikeChat(props) {
 
   const _user = useSelector(state=>state.user);
   const _post = useSelector(state=>state.post);
-  console.log(_post);
   
   const thisPost = _post.list.reduce((x,v,i)=>  v.postKey===props.postKey?v:x,"");
 

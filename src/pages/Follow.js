@@ -9,6 +9,7 @@ import MainCard from "../components/MainCard";
 import { Button, Grid, Input, Image, Text } from "../elements" 
 
 //import Icon
+import CloseIcon from '@mui/icons-material/Close';
 
 // impot Component
 import Header from "../components/Header";
@@ -34,15 +35,15 @@ function Follow(props) {
     return (
     <Grid BG_c="#fafafa">
         <Header/>
-        <Grid hight="100px">.</Grid>
         {_post.follow_list.map((v,i)=>(
             <Grid key={i} margin="30px">
                 <MainCard key={i} {...v}/>
             </Grid>
         ))}
+        {_post.follow_list.length===0?<Grid height="100vh" is_flex flex_direction="column" justify_content="center"><CloseIcon sx={{height : "100px",width:"100px"}}/><Text F_size="30px" >팔로우가 없습니다!</Text></Grid>:""}
         
     </Grid>
-    );
+    )
 
 }
 

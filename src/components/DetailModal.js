@@ -20,6 +20,7 @@ import { Button, Grid, Input, Image, Text } from "../elements"
 import Detail from "./Detail";
 
 //import Actions
+import { actionCreators as staticActions } from "../redux/modules/static";
 
 //import axios
 
@@ -29,24 +30,24 @@ export default function DetailModal(props) {
 
     const _user = useSelector(state=>state.user);
     const _post = useSelector(state=>state.post);
-    const _static = useSelector(state=>state.state);
+    const _static = useSelector(state=>state.static);
+
+    console.log(props);
     
     const thisPost = _post.list.reduce((x,v,i)=>  v.postKey===props.postKey?v:x,"");
     
-    const [open, setOpen] = React.useState(true);
-    
 
 
-    const handleOpen = () => {
-        return props.modal? setOpen(true):setOpen(false)
-    }
-    const handleClose = () => setOpen(false);
+    const handleClose = () => dispatch(staticActions.openMadal(_static.modal));
 
+    React.useEffect(()=>{
+        
+    },[])
 
 
     return (
             <Modal
-            open={open&&props.open}
+            open={_static.modal}
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
