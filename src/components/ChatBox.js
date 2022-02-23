@@ -40,6 +40,11 @@ export default function ChatBox(props) {
     const contents = React.useRef();
 
     const addComment = () =>{
+        if(!_user.is_login){
+            window.alert("로그인이 필요합니다.");
+            window.location.href('/login');
+            return;
+        }
         console.log(contents.current.value);
         
         dispatch(commentActions.addCommentData(props.postKey,contents.current.value));

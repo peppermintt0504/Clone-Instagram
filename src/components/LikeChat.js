@@ -57,8 +57,14 @@ export default function LikeChat(props) {
   const handleClose = () => setOpen(false);
 
   const likePost=()=>{
+    if(!_user.is_login){
+      window.alert("로그인이 필요합니다.");
+      window.location.href('/login');
+      return;
+    }else{
     dispatch(postAcions.likePost(thisPost.postKey,_user.user.userKey));
     setLike(!like);
+    }
   }
 
   const editPost=()=>{
@@ -103,7 +109,7 @@ export default function LikeChat(props) {
             <Grid position='fixed' top="0" right="0">
             <CloseIcon sx={{ color: 'white', fontSize: 40 }} onClick={edithandleClose}/>
             </Grid>
-          <Edit/>
+          <Edit {...thisPost}/>
                 
         </Grid>
       </Modal>

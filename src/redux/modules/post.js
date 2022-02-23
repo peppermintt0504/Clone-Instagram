@@ -107,8 +107,8 @@ const editPost=(postKey,editData) =>{
                     authorization: token,
                 }
             }).then(res =>{
-                console.log(res.data);
-                
+                window.alert("수정이 완료되었습니다.");
+                window.location.reload();
             })
         }
     }

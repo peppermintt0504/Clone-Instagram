@@ -67,7 +67,7 @@ const loginUser=(loginData) =>{
                     userProfileUrl : res.data.data.userProfileUrl,
                 }
                 dispatch(setUser(_user,token));
-                window.location.href("/");
+                window.location.assign("/");
             })
         }).catch((err) => {
             console.log(err);
@@ -116,7 +116,10 @@ const loginCheck=() =>{
                     userProfileUrl : res.data.data.userProfileUrl,
                 }
                 dispatch(setUser(_user,Auth));
+            }).catch( err=>{
             })
+        }
+        else{
         }
 
     }
@@ -135,7 +138,8 @@ const updateUser=() =>{
 
         if(Auth !== undefined){
             
-
+        }else{
+            window.alert("로그인이 필요합니다.")
         }
     }
 }

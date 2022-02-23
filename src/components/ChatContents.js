@@ -17,8 +17,7 @@ export default function ChatContents(props) {
     const _user = useSelector(state=>state.user);
     const _post = useSelector(state=>state.post);
     const _comment = useSelector(state=>state.comment);
-    console.log(props.commentKey)
-    console.log(props.commentLike)
+
 
     const thisPost = _post.list.reduce((x,v,i)=>  v.postKey===props.postKey?v:x,"");
 

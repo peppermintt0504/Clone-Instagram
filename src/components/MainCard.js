@@ -60,7 +60,7 @@ export default function MainCard(props) {
     <div className='mainbox'>
       <Card sx={{ border: "1px solid #dbdbdb", maxWidth: 600, margin: "auto",}}>
 
-        <Cardheader postKey={props.postKey} is_owner={_user.user.userKey===props.userKey} userId={postUser.loginId} userProfile={postUser.userProfileUrl}/>
+        <Cardheader postKey={props.postKey} is_owner={_user.user.userKey===props.userKey} userKey={postUser.userKey} userId={postUser.loginId} userProfile={postUser.userProfileUrl}/>
 
         <Img imgURL={props.postImg} size="600px"/>
 

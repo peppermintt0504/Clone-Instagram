@@ -64,7 +64,7 @@ export default function Detail(props) {
           </div>
         
         <Grid width="400px">
-          <Cardheader postKey={thisPost.postKey} is_owner={_user.user.userKey===thisPost.postKey} userId={postUser.loginId} userProfile={postUser.userProfileUrl}/> 
+          <Cardheader postKey={thisPost.postKey} is_owner={_user.user.userKey===thisPost.postKey} userKey={postUser.userKey} userId={postUser.loginId} userProfile={postUser.userProfileUrl}/> 
           <hr></hr>
 
           {_comment.list[props.postKey]?thisCommnet.map((v,i)=>(

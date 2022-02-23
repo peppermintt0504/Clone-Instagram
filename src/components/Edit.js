@@ -34,36 +34,23 @@ const Edit = (props) => {
 
     const _user = useSelector(state=>state.user);
     const _post = useSelector(state=>state.post);
+    console.log(props);
 
 
-
-    const fileInput = React.useRef();
     const contents = React.useRef();
 
     const [preview,setPreview] = React.useState([]);
-    const [tempFile,setTempFile] = React.useState([]);
 
 
-    let tempData= [];
-    const formData = new FormData();
         
     
 
-    const addPost = () =>{
-        const postData = new FormData();
-        for(let i = 0; i<tempFile[0].length;i++){
-            postData.append("postImg",tempFile[0][i]);
-            console.log(tempFile[0][i]);
+    const editPost = () =>{
+        const changedData={
+            postContents:contents.current.value,
+            postTag:[],
         }
-        postData.append("postContents",contents.current.value);
-        postData.append("postImgCount",preview.length);
-        postData.append("postTag",[]);
-
-        console.log(contents.current.value);
-        console.log(tempFile[0]);
-        console.log(preview.length);
-        dispatch(postActions.addPost(postData));
-        
+        dispatch(postActions.editPost(props.postKey,changedData));
 
     }
 
@@ -79,7 +66,7 @@ const Edit = (props) => {
                     <Grid width="42px" height="42px" B_top_left_radius="15px" BG_c="white"/>
                     <Grid is_flex width="100%" height="42px" BG_c="white" justify_content="center" vertical_align= "middle" align_items="center"><Text vertical_align= "middle">새 게시물 만들기</Text></Grid>
                     <Grid width="42px" height="42px" B_top_right_radius="15px" BG_c="white">
-                        <Button margin="7px 0 0 0" border="0px" BG_color="white" width="30px" _onClick={addPost}><CheckIcon/></Button>
+                        <Button margin="7px 0 0 0" border="0px" BG_color="white" width="30px" _onClick={editPost}><CheckIcon/></Button>
                     </Grid>
                 </Grid>
                 <Grid
@@ -95,7 +82,7 @@ const Edit = (props) => {
                     height="calc(100vmin - 219px)"
                     B_bottom_left_radius="15px" B_bottom_right_radius="15px"
                     BG_c="white">
-                        <Img imgURL={preview} size="max(348px,min(calc(100vmin - 219px),min(calc(100vw - 372px),855px)))"></Img>
+                        <Img imgURL={props.postImg} size="max(348px,min(calc(100vmin - 219px),min(calc(100vw - 372px),855px)))"></Img>
                         <Grid is_flex flex_direction="column"width="100%"  >
                             <Grid is_flex justify_content="flex-start" min_width="300px" width="100%" >
                                 <Avatar
@@ -105,7 +92,7 @@ const Edit = (props) => {
                                 />
                                 <Text>{_user.user.loginId?_user.user.loginId:""}</Text>
                             </Grid>
-                            <TextArea ref={contents} rows="10" wrap="hard">
+                            <TextArea defaultValue={props.postContents} ref={contents} rows="10" wrap="hard">
 
                             </TextArea>
                             

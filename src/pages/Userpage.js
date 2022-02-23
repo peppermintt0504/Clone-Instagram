@@ -20,6 +20,7 @@ import Avatar from '@mui/material/Avatar';
 
 // impot Component
 import Header from "../components/Header";
+import DetailModal from "../components/DetailModal";
 
 //import Actions
 import { actionCreators as userActions } from "../redux/modules/user";
@@ -44,6 +45,11 @@ function Userpage() {
   const pagePost = _post.list.filter((v,i)=>v.userKey===_userKey?true:false);
   
   const fileInput = React.useRef();
+  const modalRef = React.useRef();
+  const [is_open, setOpen] = React.useState(false);
+  const [modalKey, setModalKey] = React.useState(false);
+
+
 
   const selectFile =(e) =>{
     const formData = new FormData();
@@ -82,11 +88,11 @@ function Userpage() {
                     <Grid is_flex flex_direction = "column" width = "50%" >
                         <Grid width="100%" is_flex flex_direction = "row">
                             <Text F_size="25px" width = "200px">{pageUser?pageUser.loginId:""}</Text>
-                            {_user.user.userKey === _userKey?
+                            {_user.is_login?_user.user.userKey === _userKey?
                             <div>
                             <Button _onClick={()=>{fileInput.current.click()}} border="1px solid #dbdbdb" B_radius="4px" width = "120px" height="30px" font_size="14px" font_weight="600" text = "프로필 사진 변경" />
                             <input ref={fileInput} onChange={selectFile} type="file" style={{display:'none'}}/></div>
-                          :<Button _onClick={()=>{}} border="1px solid #dbdbdb" B_radius="4px" width = "120px" height="30px" font_size="14px" font_weight="600" text = "메시지 보내기" />}
+                          :<Button _onClick={()=>{}} border="1px solid #dbdbdb" B_radius="4px" width = "120px" height="30px" font_size="14px" font_weight="600" text = "메시지 보내기" />:""}
                             {_user.user.userKey === _userKey?"":
                             _user.user.follow.reduce((x,v,i)=> v===_userKey?true:x,false)?
                               <Button _onClick={followUser} border="1px solid #dbdbdb" margin="10px 20px" B_radius="4px" width = "50px" height="30px" font_size="14px" font_weight="600"><TaskAltIcon/></Button>
@@ -109,7 +115,7 @@ function Userpage() {
                       if(index % 3===0 && pagePost.length - index -1 >= 2){
                         return(
                           <Grid key={index} width="calc(min(15vw,290px)*3 + 90px)" is_flex gap="30px">
-                            <Image key={index}   max_width="290px" max_height="290px" width="15vw" height="15vw" src={pagePost[index  ].postImg[0]}/>
+                            <Image  key={index}   max_width="290px" max_height="290px" width="15vw" height="15vw" src={pagePost[index  ].postImg[0]}/>
                             <Image key={index+1} max_width="290px" max_height="290px" width="15vw" height="15vw" src={pagePost[index+1].postImg[0]}/>
                             <Image key={index+2} max_width="290px" max_height="290px" width="15vw" height="15vw" src={pagePost[index+2].postImg[0]}/>
                           </Grid>
@@ -119,7 +125,7 @@ function Userpage() {
                         if(pagePost.length - index -1 === 0 ){
                           return(
                             <Grid key={index}  width="calc(min(15vw,290px)*3 + 90px)" is_flex flex gap="30px">
-                              <Image key={index} width="calc(min(15vw,290px))" height="calc(min(15vw,290px))" src={pagePost[index].postImg[0]}/>
+                              <Image _onClick={()=>{setOpen(true);setModalKey(pagePost[index].postKey)}} key={index} width="calc(min(15vw,290px))" height="calc(min(15vw,290px))" src={pagePost[index].postImg[0]}/>
                             </Grid>
                           )
                         }
@@ -134,6 +140,8 @@ function Userpage() {
                       }
 
                       }):""}
+                      <DetailModal postKey={modalKey} open={is_open} ></DetailModal>
+
 
                     </Grid>
             </Grid>

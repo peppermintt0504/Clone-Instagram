@@ -48,15 +48,22 @@ const Header = (props) => {
     // console.log(1 in _user.user.follow)
 
     // console.log(_user);
-    console.log(_post);
+    // console.log(_post);
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleClose = () => {
+        if(!_user.is_login){
+            window.alert("로그인이 필요한 작업입니다.");
+            navigate('/login');
+        }else{
+            setOpen(false);}
+        }
 
     
     React.useEffect(async() => {
-        dispatch(userActions.loginCheck());
+        if(!_user.is_login)
+            dispatch(userActions.loginCheck());
         dispatch(userActions.getUsers());
         dispatch(postActions.getPost());
     },[]);
