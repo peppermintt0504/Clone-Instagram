@@ -40,7 +40,9 @@ export default function ChatBox(props) {
     const contents = React.useRef();
 
     const addComment = () =>{
-        dispatch(commentActions.getComment(props.postKey));
+        console.log(contents.current.value);
+        
+        dispatch(commentActions.addCommentData(props.postKey,contents.current.value));
 
     }
 

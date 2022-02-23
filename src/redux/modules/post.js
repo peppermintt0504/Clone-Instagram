@@ -100,7 +100,7 @@ const likePost=(postKey,userKey) =>{
     }
 }
 
-const editPost=(postKey) =>{
+const editPost=(postKey,editData) =>{
     return async function (dispatch,getState){
         const token = getCookie("is_login");
 
@@ -108,7 +108,7 @@ const editPost=(postKey) =>{
             instance({
                 method : "put",
                 url : `/posts/${postKey}`,
-                data : {},
+                data : editData,
                 headers : {
                     "Content-Type": "application/json;charset-UTF-8",
                     authorization: token,
@@ -181,9 +181,8 @@ const actionCreators = {
     getPost,
     addPost,
     likePost,
-
-
-
+    delPost,
+    editPost,
 };
 
 export { actionCreators };
