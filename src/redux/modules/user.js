@@ -67,6 +67,7 @@ const loginUser=(loginData) =>{
                     userProfileUrl : res.data.data.userProfileUrl,
                 }
                 dispatch(setUser(_user,token));
+                window.location.href("/");
             })
         }).catch((err) => {
             console.log(err);

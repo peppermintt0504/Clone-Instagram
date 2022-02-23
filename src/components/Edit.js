@@ -40,39 +40,14 @@ const Edit = (props) => {
     const fileInput = React.useRef();
     const contents = React.useRef();
 
-    const [fileSelected,setFileSelected] = React.useState(false);
     const [preview,setPreview] = React.useState([]);
     const [tempFile,setTempFile] = React.useState([]);
 
 
     let tempData= [];
     const formData = new FormData();
-
-    const selectFile =(e) =>{
         
-        
-        
-        const file = fileInput.current.files[0];
-        const files = fileInput.current.files;
-        setTempFile([...tempFile,files]);
-        
-        
-        for(let i=0;i<files.length;i++){
-            formData.append("postImg",files[i]);
-            const reader = new FileReader();
-            reader.readAsDataURL(files[i]);
-            reader.addEventListener("load",function () {
-                tempData.push(reader.result);
-                if(tempData.length===files.length){
-                    setPreview([...preview,...tempData])
-                    setFileSelected(true);
-                    console.log(formData);
-                }
-            }
-        )
-    }
-        
-    }
+    
 
     const addPost = () =>{
         const postData = new FormData();
