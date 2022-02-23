@@ -64,7 +64,7 @@ const addPost=(post_data) =>{
                 }
             }).then(res =>{
                 window.alert("정상적으로 게시물이 작성되었습니다.")
-                
+                window.location.reload();
             }).catch(err=>{
                 window.alert("게시물이 실패하였습니다.")
             })
