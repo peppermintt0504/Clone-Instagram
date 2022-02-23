@@ -70,7 +70,6 @@ const loginUser=(loginData) =>{
                 window.location.assign("/");
             })
         }).catch((err) => {
-            console.log(err);
             window.alert("로그인에 실패하였습니다.")
         })
     }

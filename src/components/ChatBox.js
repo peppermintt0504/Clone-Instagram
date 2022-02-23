@@ -42,7 +42,7 @@ export default function ChatBox(props) {
     const addComment = () =>{
         if(!_user.is_login){
             window.alert("로그인이 필요합니다.");
-            window.location.href('/login');
+            window.location.assign('/login');
             return;
         }
         console.log(contents.current.value);

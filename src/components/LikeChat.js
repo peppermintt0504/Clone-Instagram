@@ -59,7 +59,7 @@ export default function LikeChat(props) {
   const likePost=()=>{
     if(!_user.is_login){
       window.alert("로그인이 필요합니다.");
-      window.location.href('/login');
+      window.location.assign('/login');
       return;
     }else{
     dispatch(postAcions.likePost(thisPost.postKey,_user.user.userKey));

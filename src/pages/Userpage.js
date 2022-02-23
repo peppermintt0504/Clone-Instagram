@@ -24,6 +24,7 @@ import DetailModal from "../components/DetailModal";
 
 //import Actions
 import { actionCreators as userActions } from "../redux/modules/user";
+import { actionCreators as staticActions } from "../redux/modules/static";
 
 //import axios
 import instance from "../shared/Request";
@@ -31,26 +32,27 @@ import { getCookie } from "../shared/Cookie";
 
 
 function Userpage() {
+  //react redux & router
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  //state data
   const _user = useSelector(state=>state.user);
   const _post = useSelector(state=>state.post);
-
+  const _static = useSelector(state=>state.state);console.log(_static);
   
+  //variable
   const _userKey = parseInt(useParams().userKey);
-
-  
   const pageUser = _user.user_list.reduce((x,v,i)=>  v.userKey===_userKey?v:x,"");
   const pagePost = _post.list.filter((v,i)=>v.userKey===_userKey?true:false);
   
+  //Ref & State
   const fileInput = React.useRef();
   const modalRef = React.useRef();
   const [is_open, setOpen] = React.useState(false);
   const [modalKey, setModalKey] = React.useState(false);
 
-
-
+  //functions
   const selectFile =(e) =>{
     const formData = new FormData();
     const file = fileInput.current.files[0];
@@ -72,6 +74,10 @@ function Userpage() {
 
   const followUser = () =>{
     dispatch(userActions.followUser(_userKey));
+  }
+
+  const useModal = () =>{
+    dispatch(staticActions.openMadal(_static.modal))
   }
 
     return (
@@ -125,7 +131,7 @@ function Userpage() {
                         if(pagePost.length - index -1 === 0 ){
                           return(
                             <Grid key={index}  width="calc(min(15vw,290px)*3 + 90px)" is_flex flex gap="30px">
-                              <Image _onClick={()=>{setOpen(true);setModalKey(pagePost[index].postKey)}} key={index} width="calc(min(15vw,290px))" height="calc(min(15vw,290px))" src={pagePost[index].postImg[0]}/>
+                              <Image _onClick={useModal} key={index} width="calc(min(15vw,290px))" height="calc(min(15vw,290px))" src={pagePost[index].postImg[0]}/>
                             </Grid>
                           )
                         }

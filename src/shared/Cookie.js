@@ -8,9 +8,9 @@ const getCookie = (name) => {
 };
 
   // 쿠키에 저장하는 함수
-    const setCookie = (name, value, exp = 0.5) => {
+    const setCookie = (name, value, exp = 0.49) => {
     let date = new Date();
-    date.setTime(date.getTime() + exp * 24 * 60 * 60 * 1000);
+    date.setTime(date.getTime() + exp * 60 * 60 * 1000);
 
     document.cookie = `${name}=${value};expires=${date.toUTCString()};path=/`;
 };

@@ -78,7 +78,6 @@ function Login() {
         };
 
         dispatch(userActions.loginUser(loginData));
-        navigate("/");
         
     };
     

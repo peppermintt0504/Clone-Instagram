@@ -18,8 +18,8 @@ import IconButton from '@mui/material/IconButton';
 //import Icon
 import HomeIcon from '@mui/icons-material/Home';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import SendIcon from '@mui/icons-material/Send';
-import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
+import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
@@ -77,8 +77,8 @@ const Header = (props) => {
                     <img width={"120px"} alt="instagram letter Logo" src="/Logo/Logo5.png"/>
                 </div>
                 <Grid is_flex flex_direction="row">
-                <IconButton onClick={()=>{console.log(" ")}} ><HomeOutlinedIcon sx={{ margin :"10px"}}/></IconButton>
-                {/* <IconButton onClick={()=>{console.log(" ")}} ><SendOutlinedIcon sx={{ margin :"10px"}}/></IconButton>     */}
+                <IconButton onClick={()=>{navigate("/")}} ><HomeOutlinedIcon sx={{ margin :"10px"}}/></IconButton>
+                <IconButton onClick={()=>{navigate("/follow")}} ><GroupOutlinedIcon sx={{ margin :"10px"}}/></IconButton>    
                 <IconButton onClick={handleOpen}><AddBoxOutlinedIcon  sx={{ margin :"10px"}}/></IconButton>    
                 {/* <IconButton onClick={()=>{console.log(" ")}} ><FavoriteBorderOutlinedIcon sx={{ margin :"10px"}}/></IconButton>     */}
                 {_user.is_login?<IconButton onClick={()=>{navigate(`/userpage/${_user.user.userKey}`)}} ><Avatar sx={{ margin :"10px"}} alt="Remy Sharp" src={_user.user.userProfileUrl} /></IconButton> :""}

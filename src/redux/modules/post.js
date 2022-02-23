@@ -9,7 +9,7 @@ import instance from "../../shared/Request";
 
 //action
 const SET_POST = "SET_POST";
-const ADD_POST = "ADD_POST";
+const FOLLOW_POST = "FOLLW_POST";
 const LIKE_POST = "LIKE_POST";
 const DEL_POST = "DEL_POST";
 const UPDATE_POST = "UPDATE_POST";
@@ -18,13 +18,14 @@ const UPDATE_POST = "UPDATE_POST";
 
 const set = createAction(SET_POST, (Post_list) => ({ Post_list }));
 const like = createAction(LIKE_POST,(postKey,userKey) => ({postKey,userKey}));
-const add = createAction(ADD_POST, (Post_data) => ({ Post_data }));
+const follow = createAction(FOLLOW_POST, (Post_list) => ({ Post_list }));
 const del = createAction(DEL_POST, (Post_data) => ({ Post_data }));
 const update = createAction(UPDATE_POST, (Post_data) => ({ Post_data}));
 
 //initialState
 const initialState = {
     list : [],
+    follow_list : [],
 };
 
 
@@ -135,6 +136,26 @@ const delPost=(postKey) =>{
     }
 }
 
+const followPost=() =>{
+    return async function (dispatch,getState){
+        const token = getCookie("is_login");
+
+        if(token){
+            instance({
+                method : "get",
+                url : `/posts/follow`,
+                data : {},
+                headers : {
+                    "Content-Type": "application/json;charset-UTF-8",
+                    authorization: token,
+                }
+            }).then(res =>{
+                dispatch(follow(res.data.data.postList))
+                
+            })
+        }
+    }
+}
 
 //reducer
 export default handleActions(
@@ -154,10 +175,11 @@ export default handleActions(
                 draft.list[index].postLike.push(action.payload.userKey);
             }
         }),
-        [ADD_POST]: (state, action) =>
+        [FOLLOW_POST]: (state, action) =>
         produce(state, (draft) => {
-            draft.list.push(action.payload.diary_data);
+            draft.follow_list = [...action.payload.Post_list];
         }),
+
         [DEL_POST]: (state, action) =>
         produce(state, (draft) => {
             window.alert('데이터가 삭제되었습니다');
@@ -176,6 +198,7 @@ const actionCreators = {
     likePost,
     delPost,
     editPost,
+    followPost,
 };
 
 export { actionCreators };

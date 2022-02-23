@@ -29,11 +29,12 @@ export default function DetailModal(props) {
 
     const _user = useSelector(state=>state.user);
     const _post = useSelector(state=>state.post);
+    const _static = useSelector(state=>state.state);
     
     const thisPost = _post.list.reduce((x,v,i)=>  v.postKey===props.postKey?v:x,"");
-
-    const [open, setOpen] = React.useState(props.open);
-
+    
+    const [open, setOpen] = React.useState(true);
+    
 
 
     const handleOpen = () => {
@@ -45,7 +46,7 @@ export default function DetailModal(props) {
 
     return (
             <Modal
-            open={open}
+            open={open&&props.open}
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"

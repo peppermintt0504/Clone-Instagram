@@ -11,6 +11,7 @@ import Main from "../pages/Main";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Userpage from "../pages/Userpage";
+import Follow from "../pages/Follow";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/login" element={<Login />}/>
         <Route path="/signup" element={<SignUp />}/>
         <Route path="/userpage/:userKey" element={<Userpage />}/>
+        <Route path="/follow" element={<Follow />}/>
       </Routes>
     </React.Fragment>
   );

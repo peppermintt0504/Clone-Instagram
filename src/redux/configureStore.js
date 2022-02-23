@@ -8,6 +8,7 @@ import User from "./modules/user"
 import Image from "./modules/image";
 import Comment from "./modules/comment";
 import Post from "./modules/post";
+import Static from "./modules/static"
 
 const middlewares = [thunk];
 const rootReducer = combineReducers({
@@ -15,7 +16,9 @@ const rootReducer = combineReducers({
     post : Post,
     user : User,
     comment: Comment,
+    static : Static,
 });
+
 const enhancer = applyMiddleware(...middlewares);
 const store = createStore(rootReducer,enhancer);
 
