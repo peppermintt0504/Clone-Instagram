@@ -13,6 +13,7 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 
 import moment from "moment";
 import 'moment/locale/ko'
+import { borderRadius } from '@mui/system';
 
 const style = {
   position: 'absolute',
@@ -27,6 +28,7 @@ const style = {
   p: 4,
   display: 'flex',
   padding : 0,
+  borderRadius : "5px",
 };
 
 export default function Detail(props) {
@@ -64,11 +66,12 @@ export default function Detail(props) {
           </div>
         
         <Grid width="400px">
+          <Grid B_bottom="1px solid #efefef" margin="0 0 20px 0">
           <Cardheader postKey={thisPost.postKey} is_owner={_user.user.userKey===thisPost.postKey} userKey={postUser.userKey} userId={postUser.loginId} userProfile={postUser.userProfileUrl}/> 
-          <hr></hr>
+          </Grid>
 
           {_comment.list[props.postKey]?thisCommnet.map((v,i)=>(
-            <ChatContents {...v}/>
+            <ChatContents key={i} {...v}/>
           )):""}
 
           <Grid position="absolute" bottom="0px" width="400px">

@@ -14,7 +14,8 @@ import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt
 import { Button, Typography, Box, Modal } from '@mui/material';
 
 
-
+//import MUI
+import Snackbar from '@mui/material/Snackbar';
 
 //import elements
 import { Grid, Image, Text } from "../elements" 
@@ -23,6 +24,8 @@ import { Grid, Image, Text } from "../elements"
 
 
 // impot Component
+import LoginSnackbar from "./LoginSnackbar"
+
 
 
 //import Actions
@@ -39,25 +42,38 @@ export default function ChatBox(props) {
 
     const contents = React.useRef();
 
-    const addComment = () =>{
-        if(!_user.is_login){
-            window.alert("로그인이 필요합니다.");
-            window.location.assign('/login');
+    ////snackbar
+    const [snackbar,setSnackbar] = React.useState(false);
+    const snackbarClick = () => {
+        setSnackbar(true);
+    };
+    const snackbarClose = (event, reason) => {
+        if (reason === 'clickaway') {
             return;
         }
-        console.log(contents.current.value);
-        
-        dispatch(commentActions.addCommentData(props.postKey,contents.current.value));
+        setSnackbar(false);
+    };
 
+    const addComment = () =>{
+        if(!_user.is_login){
+            snackbarClick();
+            return;
+        }
+        dispatch(commentActions.addCommentData(props.postKey,contents.current.value));
     }
 
 
     return (
+        <>
         <Grid is_flex margin="10px" justify_content="space-between">
             <SentimentSatisfiedAltIcon className="SmileButton" fontSize="medium" />
             <input ref={contents} className="CommentInputBox" placeholder="댓글 달기..."></input>
             <Button onClick={addComment} variant="text">게시</Button>
         </Grid>
+        <Snackbar anchorOrigin={{vertical: 'top',horizontal: 'center'}} sx={{color:"black"}} open={snackbar} autoHideDuration={2000} onClose={snackbarClose}>
+            <div><LoginSnackbar/></div>
+        </Snackbar>
+        </>
     );
 
 }

@@ -101,9 +101,6 @@ const Write = (props) => {
         postData.append("postImgCount",preview.length);
         postData.append("postTag",[]);
 
-        console.log(contents.current.value);
-        console.log(tempFile[0]);
-        console.log(preview.length);
         dispatch(postActions.addPost(postData));
         
 

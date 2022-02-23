@@ -20,6 +20,7 @@ const initialState = {
 const openMadal=(is_open) =>{
     return async function (dispatch,getState){
         dispatch(modalOpen(!is_open));
+        console.log(!is_open)
     }
 }
 
