@@ -11,8 +11,8 @@ const Img = (props) => {
   if(props.imgURL){
     return (
       <Carousel showThumbs={false} infiniteLoop={false} width={props.size} height={props.size}>
-        {props.imgURL.map(item=>(
-          <Grid width={props.size} height={props.size}>
+        {props.imgURL.map((item,i)=>(
+          <Grid key={i} width={props.size} height={props.size}>
             <img style={{width : props.size, height : props.size}} src={item}/>
           </Grid>
         ))}

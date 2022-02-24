@@ -18,6 +18,7 @@ import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Snackbar from '@mui/material/Snackbar';
 
 //import Icon
 import HomeIcon from '@mui/icons-material/Home';
@@ -29,18 +30,19 @@ import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import CloseIcon from '@mui/icons-material/Close';
+import LoginIcon from '@mui/icons-material/Login';
 
 
 
 // impot Component
 import Write from "./Wirte";
+import LoginSnackbar from "./LoginSnackbar"
+import LogoutSnackbar from "./LogoutSnackbar";
 
 //import Actions
 import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as userActions } from "../redux/modules/user";
 
-//import axios
-import instance from "../shared/Request";
 
 
 const Header = (props) => {
@@ -49,7 +51,6 @@ const Header = (props) => {
 
     const _user = useSelector(state=>state.user);
     const _post = useSelector(state=>state.post);
-    // console.log(1 in _user.user.follow)
 
     // console.log(_user);
     // console.log(_post);
@@ -63,12 +64,35 @@ const Header = (props) => {
         setAnchorEl(null);
     };
 
+    ////snackbar
+    const [snackbar,setSnackbar] = React.useState(false);
+    const snackbarClick = () => {
+        setSnackbar(true);
+    };
+    const snackbarClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setSnackbar(false);
+    };
+    const [logoutSnackbar,setLogoutSnackbar] = React.useState(false);
+    const logoutSnackbarOpen = () => {
+        setLogoutSnackbar(true);
+    };
+    const logoutSnackbarClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setLogoutSnackbar(false);
+    };
+    
+
 
     const [Mopen, setOpen] = React.useState(false);
     const handleOpen = () => {
         if(!_user.is_login){
-        window.alert("로그인이 필요한 작업입니다.");
-        navigate('/login');
+            setSnackbar(true);
+            navigate('/login');
         }else{
         setOpen(true);}
         
@@ -77,6 +101,11 @@ const Header = (props) => {
     const MhandleClose = () => {
             setOpen(false);
         }
+
+    const logout =() =>{
+        logoutSnackbarOpen();
+        dispatch(userActions.logoutUser());
+    }
 
     
     React.useEffect(async() => {
@@ -97,8 +126,7 @@ const Header = (props) => {
                 <Grid is_flex flex_direction="row">
                     <Tooltip title="Main"><IconButton sx={{width:"50px", height : "50px"}} onClick={()=>{navigate("/")}} ><HomeOutlinedIcon sx={{ margin :"10px"}}/></IconButton></Tooltip>
                     <Tooltip title="follow"><IconButton sx={{width:"50px", height : "50px"}} onClick={()=>{navigate("/follow")}} ><GroupOutlinedIcon sx={{ margin :"10px"}}/></IconButton></Tooltip>    
-                    <Tooltip title="Add Post"><IconButton sx={{width:"50px", height : "50px"}} onClick={handleOpen}><AddBoxOutlinedIcon  sx={{ margin :"10px"}}/></IconButton></Tooltip>    
-                    {/* <IconButton onClick={()=>{console.log(" ")}} ><FavoriteBorderOutlinedIcon sx={{ margin :"10px"}}/></IconButton>     */}
+                    <Tooltip title="Add Post"><IconButton sx={{width:"50px", height : "50px"}} onClick={_user.is_login?handleOpen:snackbarClick}><AddBoxOutlinedIcon  sx={{ margin :"10px"}}/></IconButton></Tooltip>    
                     {_user.is_login?
                     <Tooltip title="My Menu">
                     <IconButton
@@ -112,12 +140,11 @@ const Header = (props) => {
                         <Avatar sx={{ margin :"10px"}} alt="Remy Sharp" src={_user.user.userProfileUrl}/>
                     </IconButton>
                     </Tooltip>
-                    :""}
+                    :<Tooltip title="Log In"><IconButton sx={{width:"50px", height : "50px"}} onClick={()=>{navigate('/login')}}><LoginIcon  sx={{ margin :"10px"}}/></IconButton></Tooltip>}
                 </Grid>
             </Grid>
             </Grid>
             <Grid margin = "57px"/>
-
 
             <Menu
                 sx={{height:"120px",padding:"0px"}}
@@ -130,7 +157,7 @@ const Header = (props) => {
                 }}
             >
                 <MenuItem sx={{margin:"0px", fontSize:"12px"}} onClick={()=>{navigate(`/userpage/${_user.user.userKey}`)}}>Profile</MenuItem>
-                <MenuItem sx={{margin:"0px", fontSize:"12px"}} onClick={()=>{dispatch(userActions.logoutUser())}}>Logout</MenuItem>
+                <MenuItem sx={{margin:"0px", fontSize:"12px"}} onClick={logout}>Logout</MenuItem>
             </Menu>
             <Modal
             open={Mopen}
@@ -142,12 +169,23 @@ const Header = (props) => {
                 <Grid position='fixed' top="0" right="0">
                 <CloseIcon sx={{ color: 'white', fontSize: 40 }} onClick={MhandleClose}/>
                 </Grid>
+                
                 <Write/>
                 
             </Grid>
             </Modal>
+
+            <Snackbar anchorOrigin={{vertical: 'top',horizontal: 'center'}} open={snackbar} autoHideDuration={2000} onClose={snackbarClose}>
+                <div><LoginSnackbar/></div>
+            </Snackbar>
+            <Snackbar anchorOrigin={{vertical: 'top',horizontal: 'center'}} open={logoutSnackbar} autoHideDuration={2000} onClose={logoutSnackbarClose}>
+                <div><LogoutSnackbar/></div>
+            </Snackbar>
+
         </React.Fragment>
     );
 
 }
+
+
 export default Header;

@@ -38,7 +38,9 @@ export default function DetailModal(props) {
     
 
 
-    const handleClose = () => dispatch(staticActions.openMadal(_static.modal));
+    const handleClose = () => {
+        dispatch(staticActions.openMadal(_static.modal))
+    };
 
     React.useEffect(()=>{
         
@@ -55,7 +57,7 @@ export default function DetailModal(props) {
             <div>
                 <Detail postKey={props.postKey}/>
                 <Grid position= "absolute" right="0">
-                <CloseIcon sx={{ color: 'white', fontSize: 40 }} onClick={handleClose}/>
+                <CloseIcon sx={{ color: 'white', fontSize: 50 }} onClick={handleClose}/>
                 </Grid>
             </div>
             </Modal>

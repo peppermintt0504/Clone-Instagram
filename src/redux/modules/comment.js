@@ -18,7 +18,7 @@ const DEL_COMMENT = "DEL_COMMENT";
 //action creatos
 const setComment = createAction(SET_COMMENT, (comment_list,postKey) => ({comment_list,postKey}));
 const addComment = createAction(ADD_COMMENT, (comment_data) => ({comment_data}));
-const deleteCommnet = createAction(DEL_COMMENT, (comment_list,postKey) => ({ comment_list,postKey }));
+const deleteCommnet = createAction(DEL_COMMENT, (commentKey,postKey) => ({ commentKey,postKey }));
 
 
 //initialState
@@ -33,19 +33,19 @@ const getComment = (postKey) => {
     const token = getCookie("is_login");
     console.log(postKey)
 
-    if(token){
-        instance({
-            method : "get",
-            url : `/posts/${postKey}/comment`,
-            data : {},
-            headers : {
-                "Content-Type": "application/json;charset-UTF-8",
-                authorization: token,
-            }
-        }).then(res =>{
-          dispatch(setComment(res.data.data.commentList,postKey))
-        })
-    }
+    
+    instance({
+        method : "get",
+        url : `/posts/${postKey}/comment`,
+        data : {},
+        headers : {
+            "Content-Type": "application/json;charset-UTF-8",
+            authorization: token,
+        }
+    }).then(res =>{
+      dispatch(setComment(res.data.data.commentList,postKey))
+    })
+    
   }
 }
 
@@ -144,7 +144,7 @@ export default handleActions(
 
       [DEL_COMMENT]: (state, action) => 
       produce(state, (draft) => {
-        draft.list[action.payload.postKey].pop(action.payload.comment_list)
+        draft.list[action.payload.postKey] = [...state.list[action.payload.postKey].filter((v,i)=> v.commentKey!==action.payload.commentKey)]
       })
   },
   initialState

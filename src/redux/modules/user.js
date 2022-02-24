@@ -128,8 +128,7 @@ const logoutUser=() =>{
     return async function (dispatch,getState){
         deleteCookie("is_login");
         dispatch(logOut());
-        window.alert("정상적으로 로그아웃이 되었습니다.");
-        window.location.assign('/login');
+
     }
 }
 

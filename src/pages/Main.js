@@ -7,6 +7,8 @@ import MainCard from "../components/MainCard";
 
 
 //import Actions
+import { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 
 //import elements
@@ -17,7 +19,6 @@ import { Button, Grid, Input, Image, Text } from "../elements"
 
 // impot Component
 import Header from "../components/Header";
-//import Actions
 
 
 //import axios
@@ -25,8 +26,10 @@ import instance from "../shared/Request";
 
 
 function Main(props) {
+    const dispatch = useDispatch();
     const _user = useSelector(state=>state.user);
     const _post = useSelector(state=>state.post);
+
     return (
     <Grid BG_c="#fafafa">
         <Header/>

@@ -92,7 +92,7 @@ Grid.defaultProps ={
 }
 
 const GridBox = styled.div`
-
+    white-space: normal;
 
     //flex
     ${(props) => (props.is_flex? `display : flex;`:"")}

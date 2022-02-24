@@ -108,6 +108,9 @@ const P = styled.div`
     width : ${(props) => props.width};
     
     cursor : ${(props) => props.cursor};
+
+    white-space: pre-wrap;
+    word-break:break-all;
 `;
 
 export default Text;

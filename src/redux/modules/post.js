@@ -46,6 +46,18 @@ const getPost=() =>{
             }).then(res =>{
                 dispatch(set(res.data.data.postList))
             })
+        }else{
+            instance({
+                method : "get",
+                url : "/posts",
+                data : {},
+                headers : {
+                    "Content-Type": "application/json;charset-UTF-8",
+                    authorization: "",
+                }
+            }).then(res =>{
+                dispatch(set(res.data.data.postList))
+            })
         }
     }
 }
