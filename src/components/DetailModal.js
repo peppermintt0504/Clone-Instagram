@@ -17,7 +17,7 @@ import { Button, Grid, Input, Image, Text } from "../elements"
 
 
 // impot Component
-import Detail from "./Detail";
+import Detail from "../components/Detail";
 
 //import Actions
 import { actionCreators as staticActions } from "../redux/modules/static";
