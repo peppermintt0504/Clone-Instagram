@@ -60,12 +60,13 @@ export default function ChatBox(props) {
             return;
         }
         dispatch(commentActions.addCommentData(props.postKey,contents.current.value));
+        contents.current.value="";
     }
 
 
     return (
         <>
-        <Grid is_flex margin="10px" justify_content="space-between">
+        <Grid B_top="1px solid #efefef" is_flex margin="10px" justify_content="space-between">
             <SentimentSatisfiedAltIcon className="SmileButton" fontSize="medium" />
             <input ref={contents} className="CommentInputBox" placeholder="댓글 달기..."></input>
             <Button onClick={addComment} variant="text">게시</Button>

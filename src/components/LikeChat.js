@@ -85,7 +85,7 @@ export default function LikeChat(props) {
 
   return (
       <Grid>
-        <Grid is_flex justify_content="space-between" margin= "10px">
+        <Grid B_top="1px solid #efefef" is_flex justify_content="space-between" margin= "10px" margin_top="0px">
           <Grid is_flex flex_wrap="nowrap" width="auto">
       <Button _onClick={likePost} border="0px" BG_color="white" padding="0px" margin="0px 5px" width="28px" height="28px">
         {like?<FavoriteOutlinedIcon/>:<FavoriteBorderOutlinedIcon/>}

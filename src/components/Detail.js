@@ -75,12 +75,10 @@ export default function Detail(props) {
           )):""}
 
           <Grid position="absolute" bottom="0px" width="400px">
-            <hr></hr>
             <LikeChat like={thisPost.postLike.length} postKey={thisPost.postKey} modal={false}/>
             <Grid margin_top="10px" margin_left="16px">
               <Typography variant="body2" color="text.secondary" align="justify" margin-top="10px">{calcTime}</Typography>
             </Grid>
-            <hr></hr>
 
             <ChatBox postKey={props.postKey}/>
           </Grid>

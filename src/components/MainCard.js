@@ -67,13 +67,12 @@ export default function MainCard(props) {
         
         <CardContent>
             <Text variant="body2" color="black" align="justify">
-            <strong>{postUser.loginId}</strong> 
+            <strong>{postUser.loginId}  </strong> 
             {props.postContents}
             </Text>
             <Text margin="20px 0px 0px 0px" F_color="#8e8e8e" align="justify">{calcTime}</Text>
         </CardContent>
 
-        <hr></hr>
 
         <ChatBox postKey={props.postKey}/>
 
