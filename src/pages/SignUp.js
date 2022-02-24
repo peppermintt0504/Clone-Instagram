@@ -3,6 +3,7 @@ import React from "react"
 import styled from "styled-components";
 import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
+import _, { set } from "lodash";
 
 //import Mui
 import Avatar from '@mui/material/Avatar';
@@ -23,7 +24,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
 //import elements
-import { Text,  } from "../elements" 
+import { Text,  } from "../elements" ;
+import {IDCheck,pwdCheck} from "../shared/common";
 
 //import Icon
 
@@ -31,7 +33,7 @@ import { Text,  } from "../elements"
 // impot Component
 
 //import Actions
-
+import { actionCreators as staticActions } from "../redux/modules/static";
 
 //import axios
 import instance from "../shared/Request";
@@ -63,7 +65,76 @@ const theme = createTheme({
 
 function SignUp() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const _static = useSelector(state=>state.static);
+
+    const [pwdCheck,setPwdCheck] = React.useState(true);
+    const [pwdForm,setPwdForm] =React.useState(true);
+    const [idForm,setIdForm] =React.useState(true);
+
+    const debounce = _.debounce((k) => dispatch(staticActions.idCheck(k)), 1000);
+    const debounce2 = _.debounce((k) => setPwdCheck(k), 500);
+
+    const keyPress = React.useCallback(debounce, []);
+    const keyPress2 = React.useCallback(debounce2, []);
+
+    
+    const [pwd,setPwd] = React.useState(true);
+    
+    console.log(_static.is_checked&&pwdCheck);
+
+    
+    const checkId = (e) => {
+        let _reg = /^[-_.0-9a-zA-Z]{6,15}$/
+        console.log(_static.is_checked);
+        if(e.target.value===""){
+            setIdForm(true)
+            return;
+        }
+        if(!_reg.test(e.target.value)){
+            setIdForm(false);
+            
+        }
+        else{
+            setIdForm(true);
+            keyPress(e.target.value);
+        }
+    };
+    
+    const pwdChange= (e)=>{
+        let _reg = /^[-_.!0-9a-zA-Z]{6,15}$/
+
+        if(e.target.value===""){
+            setPwdForm(true)
+            return;
+        }
+        if(!_reg.test(e.target.value)){
+            setPwdForm(false);
+            
+        }else{
+            setPwdForm(true)
+            setPwd(e.target.value);
+            
+        }
+
+        console.log(_reg.test(e.target.value),e.target.value)
+    }
+    
+    const pwdCheckChange= (e)=>{
+        if(e.target.value===pwd){
+            keyPress2(true);
+        }else if(e.target.value===""){
+            keyPress2(true);
+        }
+        else{
+            keyPress2(false);
+
+        }
+    }
+
     const handleSubmit = (event) => {
+        
         event.preventDefault();
         const data = new FormData(event.currentTarget);
 
@@ -96,7 +167,6 @@ function SignUp() {
                 
                 <Box
                 sx={{
-                    
                     marginTop: 0,
                     display: 'flex',
                     flexDirection: 'column',
@@ -106,21 +176,24 @@ function SignUp() {
                     <img width={"300px"} alt="instagram letter Logo" src="/Logo/Logo5.png"/>
                 <Box component="form" onSubmit={handleSubmit} noValidate sx={{ width : "300px", mt: 1, alignItems: 'center', textAlign: 'center' }}>
                     <TextField
-                    sx={{height : "40px",bgcolor : "primary.main"}}
+                    sx={{height : (idForm?_static.is_checked?"40px":"60px":"60px") ,bgcolor : "primary.main", }}
                     margin="normal"
                     size="small"
-                    //required
+                    error = {!idForm||!_static.is_checked}
+                    helperText={idForm?!_static.is_checked?"중복된 아이디입니다.":"":"아이디 형식이 맞지 않습니다."}
                     fullWidth
                     id="loginID"
                     label="사용자 이름"
                     name="loginID"
                     autoComplete="loginID"
                     autoFocus
+                    onChange={checkId}
                     />
                     <TextField
                     sx={{ marginTop:"0px", marginBottom:"0px" ,height : "40px",bgcolor : "primary.main"}}
                     margin="normal"
                     size="small"
+                    error = {!pwdForm}
                     //required
                     fullWidth
                     name="password"
@@ -128,9 +201,26 @@ function SignUp() {
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    onChange={pwdChange}
+                    />
+
+                    <TextField
+                    sx={{ marginTop:"10px", marginBottom:"0px" ,height : "40px",bgcolor : "primary.main"}}
+                    margin="normal"
+                    size="small"
+                    error = {!pwdCheck}
+                    helperText={pwdCheck?"":"비밀번호와 다릅니다."}
+                    fullWidth
+                    name="passwordCheck"
+                    label="비밀번호 확인"
+                    type="password"
+                    id="passwordCheck"
+                    autoComplete="current-passwordCheck"
+                    onChange={pwdCheckChange}
                     />
 
                     <Button
+                    disabled={_static.is_checked&&pwdCheck?false:true}
                     type="submit"
                     fullWidth
                     variant="contained"

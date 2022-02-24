@@ -132,17 +132,7 @@ const logoutUser=() =>{
     }
 }
 
-const updateUser=() =>{
-    return async function (dispatch,getState){
-        const Auth = getCookie("is_login");
 
-        if(Auth !== undefined){
-            
-        }else{
-            window.alert("로그인이 필요합니다.")
-        }
-    }
-}
 
 const followUser=(userKey) =>{
     return async function (dispatch,getState){
