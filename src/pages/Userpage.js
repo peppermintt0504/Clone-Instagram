@@ -94,7 +94,7 @@ function Userpage() {
                             <div>
                             <Button _onClick={()=>{fileInput.current.click()}} border="1px solid #dbdbdb" B_radius="4px" width = "120px" height="30px" font_size="14px" font_weight="600" text = "프로필 사진 변경" />
                             <input ref={fileInput} onChange={selectFile} type="file" style={{display:'none'}}/></div>
-                          :<Button _onClick={()=>{}} border="1px solid #dbdbdb" B_radius="4px" width = "120px" height="30px" font_size="14px" font_weight="600" text = "메시지 보내기" />:""}
+                          :"":""}
                             {_user.is_login ? _user.user.userKey === _userKey?"":
                             _user.user.follow.reduce((x,v,i)=> v===_userKey?true:x,false)?
                               <Button _onClick={followUser} border="1px solid #dbdbdb" margin="10px 20px" B_radius="4px" width = "50px" height="30px" font_size="14px" font_weight="600"><TaskAltIcon/></Button>

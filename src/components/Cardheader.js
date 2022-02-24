@@ -60,9 +60,8 @@ function Cardheader(props) {
 
         />
         </Grid>
-        <Button _onClick={delPost} border="0px" BG_color="white" margin="20px" padding="0" height="17px" width="17px">
-          {props.is_owner?<ClearIcon fontSize="10px"/>:""}
-        </Button>
+        {props.is_owner?
+        <Button _onClick={delPost} border="0px" BG_color="white" margin="20px" padding="0" height="17px" width="17px"><ClearIcon fontSize="10px"/></Button>:""}
       </Grid>
 
     );

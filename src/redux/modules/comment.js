@@ -11,13 +11,14 @@ import instance from "../../shared/Request";
 
 //action
 const SET_COMMENT = "SET_COMMENT";
-const ADD_COMMENT = "ADD_COMMENT";
+const LIKE_COMMENT = "LIKE_COMMENT";
 const DEL_COMMENT = "DEL_COMMENT";
+
 
 
 //action creatos
 const setComment = createAction(SET_COMMENT, (comment_list,postKey) => ({comment_list,postKey}));
-const addComment = createAction(ADD_COMMENT, (comment_data) => ({comment_data}));
+const like = createAction(LIKE_COMMENT, (commentKey,postKey,userKey) => ({commentKey,postKey,userKey}));
 const deleteCommnet = createAction(DEL_COMMENT, (commentKey,postKey) => ({ commentKey,postKey }));
 
 
@@ -106,7 +107,7 @@ const delComment = (postKey,commentKey) => {
   }
 }
 
-const likeComment = (commentKey) => {
+const likeComment = (commentKey,postKey,userKey,) => {
   return async function (dispatch,getState){
     const token = getCookie("is_login");
 
@@ -120,7 +121,7 @@ const likeComment = (commentKey) => {
                 authorization: token,
             }
         }).then(res =>{
-          console.log(res)
+          dispatch(like(commentKey,postKey,userKey,))
         }).catch((err)=>{
           console.log(err);
           window.alert()
@@ -137,9 +138,21 @@ export default handleActions(
       }),
 
 
-      [ADD_COMMENT]: (state, action) => 
+      [LIKE_COMMENT]: (state, action) => 
       produce(state, (draft)=> {
-        draft.list[action.payload.postKey].push(action.payload.comment_list)
+        console.log(state.list[(action.payload.postKey)].reduce((x,v,i)=> v.commentKey===action.payload.commentKey?i:x,""));
+        const index = state.list[(action.payload.postKey)].reduce((x,v,i)=> v.commentKey===action.payload.commentKey?i:x,"")
+        console.log(state.list[(action.payload.postKey)][index].commentLike.includes(action.payload.userKey));
+
+        console.log(draft.list[(action.payload.postKey)][index].commentLike.filter(v=> v!==action.payload.userKey));
+        console.log(draft.list[(action.payload.postKey)][index].commentLike);
+        console.log(action.payload.userKey);
+
+        if(state.list[(action.payload.postKey)][index].commentLike.includes(action.payload.userKey)){
+          draft.list[(action.payload.postKey)][index].commentLike = [...draft.list[(action.payload.postKey)][index].commentLike.filter(v=> v!==action.payload.userKey)];
+        }else{
+          draft.list[(action.payload.postKey)][index].commentLike.push(action.payload.userKey);
+        }
       }),
 
       [DEL_COMMENT]: (state, action) => 
