@@ -53,6 +53,3 @@
 - <img src="https://img.shields.io/badge/AWS Amplify-FF9900?style=flat-square&logo=AWS Amplify&logoColor=white"/>
 - <img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=AWS Redux&logoColor=white"/>
 
-
-
-## ✨ 핵심기능
