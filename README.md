@@ -9,9 +9,10 @@
 
 ## 🎥 Together Logo & Video
 
-### Youtube : https://www.youtube.com/watch?v=xYMO2Fh-9Cw
+### Youtube : <a href="https://picturesque-fifth-30a.notion.site/Instagram-Clone-65db16336d68488395757dca39c89103"><img src="https://img.shields.io/badge/Youtube-red?style=flat-square&logo=Youtube&logoColor=white"/></a>
 
-### Notion : https://picturesque-fifth-30a.notion.site/Instagram-Clone-65db16336d68488395757dca39c89103
+### Notion : <a href="https://picturesque-fifth-30a.notion.site/Instagram-Clone-65db16336d68488395757dca39c89103"><img src="https://img.shields.io/badge/Notion-black?style=flat-square&logo=Notion&logoColor=white"/></a>
+
 <br/><br/><br/>
 
 
@@ -45,18 +46,12 @@
 
 
 ## 🛠 Tech Stack
-**BackEnd Tech Stack**
-- <img src="https://img.shields.io/badge/Spring-green?style=flat-square&logo=Spring&logoColor=white"/>
-
-
-
 **FrontEnd Tech Stack**
 - <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/>
-
-
-## 📖 Notion & WireFrame & API
-**Project Note**
-- 
+- <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>
+- <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/>
+- <img src="https://img.shields.io/badge/AWS Amplify-FF9900?style=flat-square&logo=AWS Amplify&logoColor=white"/>
+- <img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=AWS Redux&logoColor=white"/>
 
 
 
